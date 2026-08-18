@@ -1,0 +1,18 @@
+@inject SiteLocalization L
+
+<div class="glass-stage @( _expanded ? "is-expanded" : null)">
+    <span class="orb orb-one"></span><span class="orb orb-two"></span>
+    <section class="glass-panel" aria-label="Painel conceitual de produtividade">
+        <header><div><small>@L.T("Visão semanal")</small><strong>@L.T("Fluxo criativo")</strong></div><span class="live-dot">@L.T("Ativo")</span></header>
+        <div class="glass-score"><span>@L.T("Progresso")</span><strong>84<small>%</small></strong></div>
+        <div class="progress-track" aria-label="Progresso fictício de 84 por cento"><i></i></div>
+        <div class="glass-stats"><span><small>@L.T("Foco")</small><b>06h 24</b></span><span><small>@L.T("Entregas")</small><b>12</b></span><span><small>@L.T("Ritmo")</small><b>+18%</b></span></div>
+        @if (_expanded)
+        {
+            <p class="glass-detail">@L.T("Seu melhor ritmo aparece entre 09h e 12h.")</p>
+        }
+        <button type="button" @onclick="Toggle" aria-expanded="@_expanded.ToString().ToLowerInvariant()">@L.T(_expanded ? "Ocultar análise" : "Ver análise") <span aria-hidden="true">↗</span></button>
+    </section>
+</div>
+
+@code { private bool _expanded; private void Toggle() => _expanded = !_expanded; }

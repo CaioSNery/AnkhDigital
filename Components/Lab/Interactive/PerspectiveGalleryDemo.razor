@@ -1,0 +1,117 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<section class="perspective-gallery"
+         @ref="_gallery"
+         tabindex="0"
+         role="region"
+         aria-roledescription="carousel"
+         aria-label="3D Perspective Gallery. Use as setas para navegar."
+         @onkeydown="HandleKeyDown">
+    <div class="perspective-background" @key="BackgroundKey" aria-hidden="true">
+        <img src="@ActiveSlide.ImageUrl" alt="" />
+    </div>
+    <div class="perspective-overlay" aria-hidden="true"></div>
+
+    <div class="perspective-scene">
+        <button class="perspective-card side-card previous-card"
+                type="button"
+                @key="PreviousKey"
+                @onclick="Previous"
+                aria-label="Abrir imagem anterior: @PreviousSlide.Title">
+            <img src="@PreviousSlide.ImageUrl" alt="" loading="lazy" />
+            <span>@PreviousSlide.Title</span>
+        </button>
+
+        <article class="perspective-card active-card" @key="ActiveKey" aria-live="polite">
+            <img src="@ActiveSlide.ImageUrl" alt="@ActiveSlide.Alt" />
+            <div class="card-gradient" aria-hidden="true"></div>
+            <span class="card-detail" aria-hidden="true">Ankh Lab · Depth study</span>
+            <div class="card-copy">
+                <span>@ActiveSlide.Subtitle</span>
+                <h4>@ActiveSlide.Title</h4>
+                <p>@ActiveSlide.Description</p>
+            </div>
+        </article>
+
+        <button class="perspective-card side-card next-card"
+                type="button"
+                @key="NextKey"
+                @onclick="Next"
+                aria-label="Abrir próxima imagem: @NextSlide.Title">
+            <img src="@NextSlide.ImageUrl" alt="" loading="lazy" />
+            <span>@NextSlide.Title</span>
+        </button>
+    </div>
+
+    <div class="perspective-footer">
+        <button type="button" @onclick="Previous" aria-label="Imagem anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7M8 12h10" /></svg>
+        </button>
+        <span class="perspective-count">@((ActiveIndex + 1).ToString("00")) <i></i> @Slides.Count.ToString("00")</span>
+        <button type="button" @onclick="Next" aria-label="Próxima imagem">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7m6.5-7H6" /></svg>
+        </button>
+    </div>
+</section>
+
+@code {
+    private sealed record PerspectiveSlide(int Id, string Title, string Subtitle, string Description, string ImageUrl, string Alt);
+
+    private static readonly IReadOnlyList<PerspectiveSlide> Slides =
+    [
+        new(1, "Into the Pines", "Field Notes 01", "Silêncio, textura e luz atravessando uma paisagem em movimento.", "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&h=900&q=80", "Floresta densa de pinheiros iluminada entre as árvores."),
+        new(2, "The High Country", "Field Notes 02", "Uma perspectiva elevada sobre matéria, escala e horizonte.", "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&h=900&q=80", "Montanhas rochosas sob um céu dramático."),
+        new(3, "Last Light Offshore", "Field Notes 03", "O ritmo do oceano preservado no último intervalo de luz.", "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1600&h=900&q=80", "Oceano profundo visto próximo à superfície da água."),
+        new(4, "After Hours", "Field Notes 04", "Geometrias urbanas reveladas quando a cidade muda de ritmo.", "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&h=900&q=80", "Vista aérea de edifícios e ruas de uma grande cidade."),
+        new(5, "Sea of Sand", "Field Notes 05", "Formas esculpidas pelo vento em transformação contínua.", "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1600&h=900&q=80", "Dunas extensas em uma paisagem desértica."),
+        new(6, "Solar Winds", "Field Notes 06", "Luz atmosférica atravessando a quietude do extremo norte.", "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1600&h=900&q=80", "Aurora boreal verde sobre uma paisagem nevada."),
+    ];
+
+    private ElementReference _gallery;
+    private IJSObjectReference? _module;
+    private IJSObjectReference? _tilt;
+    private int ActiveIndex { get; set; }
+    private int PreviousIndex => (ActiveIndex - 1 + Slides.Count) % Slides.Count;
+    private int NextIndex => (ActiveIndex + 1) % Slides.Count;
+    private PerspectiveSlide ActiveSlide => Slides[ActiveIndex];
+    private PerspectiveSlide PreviousSlide => Slides[PreviousIndex];
+    private PerspectiveSlide NextSlide => Slides[NextIndex];
+    private string BackgroundKey => $"perspective-background-{ActiveSlide.Id}";
+    private string PreviousKey => $"perspective-previous-{PreviousSlide.Id}";
+    private string ActiveKey => $"perspective-active-{ActiveSlide.Id}";
+    private string NextKey => $"perspective-next-{NextSlide.Id}";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Lab/Interactive/PerspectiveGalleryDemo.razor.js");
+        _tilt = await _module.InvokeAsync<IJSObjectReference>("createPerspectiveTilt", _gallery);
+    }
+
+    private void Previous() => ActiveIndex = PreviousIndex;
+    private void Next() => ActiveIndex = NextIndex;
+
+    private void HandleKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "ArrowLeft")
+            Previous();
+        else if (args.Key == "ArrowRight")
+            Next();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_tilt is not null)
+        {
+            try { await _tilt.InvokeVoidAsync("dispose"); }
+            catch (JSDisconnectedException) { }
+            await _tilt.DisposeAsync();
+        }
+
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
+}

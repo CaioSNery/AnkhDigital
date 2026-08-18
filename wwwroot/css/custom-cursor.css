@@ -1,0 +1,26 @@
+@media (hover: hover) and (pointer: fine) {
+    html.ankh-cursor-enabled,
+    html.ankh-cursor-enabled body,
+    html.ankh-cursor-enabled body * {
+        cursor: none !important;
+    }
+
+    html.ankh-cursor-enabled :is(input, textarea, [contenteditable="true"], [role="textbox"], pre, code),
+    html.ankh-cursor-enabled :is(input, textarea, [contenteditable="true"], [role="textbox"], pre, code) * {
+        cursor: text !important;
+    }
+
+    html.ankh-cursor-enabled :is(select, option) {
+        cursor: default !important;
+    }
+
+    html.ankh-cursor-enabled :is(p, h1, h2, h3, h4, h5, h6, li, blockquote, dt, dd):not(a *, button *),
+    html.ankh-cursor-enabled :is(p, h1, h2, h3, h4, h5, h6, li, blockquote, dt, dd):not(a *, button *) * {
+        cursor: text !important;
+    }
+
+    html.ankh-cursor-enabled :is(a, button, [role="button"], summary, label[for]),
+    html.ankh-cursor-enabled :is(a, button, [role="button"], summary, label[for]) * {
+        cursor: none !important;
+    }
+}

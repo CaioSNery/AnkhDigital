@@ -1,0 +1,18 @@
+@inject SiteLocalization L
+
+<section class="lab-home section-pad" id="lab-preview" aria-labelledby="lab-home-title">
+    <div class="container-shell">
+        <header class="lab-heading">
+            <div><span class="lab-kicker"><span aria-hidden="true">⚡</span> @L.T("Ankh Lab")</span><h2 id="lab-home-title">@L.T("Do conceito à") <em>@L.T("experiência.")</em></h2></div>
+            <p>@L.T("Explore algumas possibilidades de interfaces e experiências que podemos adaptar à identidade do seu negócio.")</p>
+        </header>
+
+        <div class="lab-home-grid">
+            <div class="lab-cell"><LabPreview Number="01" Category="Interface" Name="Glass Interface" Description="Transparência, profundidade e movimento para interfaces modernas." InteractionHint="Interaja com o painel" Compact="true"><GlassDemo /></LabPreview></div>
+            <div class="lab-cell"><LabPreview Number="02" Category="Interação" Name="Interactive Cards" Description="Movimento sutil e luz responsiva para destacar informações importantes." InteractionHint="Mova o cursor sobre os cards" Compact="true"><InteractiveCardsDemo /></LabPreview></div>
+            <div class="lab-cell"><LabPreview Number="03" Category="Institucional" Name="Premium Corporate" Description="Clareza, confiança e sofisticação para negócios de alto valor." InteractionHint="Experimente o CTA" Compact="true"><CorporateDemo /></LabPreview></div>
+        </div>
+
+        <div class="lab-home-action"><a href="/lab">@L.T("Explorar Ankh Lab") <span aria-hidden="true">→</span></a></div>
+    </div>
+</section>

@@ -1,0 +1,116 @@
+@inject SiteLocalization L
+
+<footer class="site-footer">
+    <svg class="footer-filter-defs" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="ankh-footer-blob" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5.5" result="blur" />
+                <feColorMatrix in="blur" mode="matrix"
+                               values="1 0 0 0 0
+                                       0 1 0 0 0
+                                       0 0 1 0 0
+                                       0 0 0 17 -6.5"
+                               result="blob" />
+                <feComposite in="SourceGraphic" in2="blob" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="footer-transition" aria-hidden="true">
+        <div class="ankh-footer-bubbles">
+            @foreach (var bubble in Bubbles)
+            {
+                <span class="bubble @(bubble.Gold ? "is-gold" : null)" style="@bubble.Variables"></span>
+            }
+        </div>
+        <div class="ankh-footer-symbols">
+            @foreach (var symbol in Symbols)
+            {
+                <span class="ankh-footer-symbol @(symbol.Signal ? "has-signal" : null)" style="@symbol.Variables">@symbol.Glyph</span>
+            }
+        </div>
+    </div>
+
+    <div class="container-shell footer-content">
+        <div class="footer-main">
+            <div class="footer-intro">
+                <a class="footer-brand" href="@(HomePrefix + "#inicio")" aria-label="Ankh Digital - início">
+                    <span aria-hidden="true">☥</span>
+                    <strong>Ankh Digital</strong>
+                    <small>@L.T("Soluções Tecnológicas")</small>
+                </a>
+                <p>@L.T("Tecnologia com propósito, design com identidade.")</p>
+            </div>
+
+            <section class="footer-column" aria-labelledby="footer-contact-title">
+                <h2 id="footer-contact-title">@L.T("Contato")</h2>
+                <a href="https://wa.me/5571985542436?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Ankh%20Digital%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+                   target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+                <a href="mailto:caionery40@gmail.com">E-mail <span aria-hidden="true">↗</span></a>
+                <a href="https://www.linkedin.com/in/caio-nery-csharp/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/CaioSNery/" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            </section>
+
+            <nav class="footer-column" aria-label="@L.T("Navegação")">
+                <h2>@L.T("Navegação")</h2>
+                <a href="@(HomePrefix + "#inicio")">@L.T("Início")</a>
+                <a href="@(HomePrefix + "#servicos")">@L.T("Serviços")</a>
+                <a href="@(HomePrefix + "#projetos")">@L.T("Projetos")</a>
+                <a href="@(HomePrefix + "#sobre")">@L.T("Sobre")</a>
+                <a href="/lab">Ankh Lab</a>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© @DateTime.Now.Year Ankh Digital. @L.T("Todos os direitos reservados.")</p>
+            <span>Salvador · BA</span>
+        </div>
+    </div>
+</footer>
+
+@code {
+    [Parameter] public string HomePrefix { get; set; } = string.Empty;
+
+    private sealed record BubbleSpec(string Variables, bool Gold = false);
+    private sealed record SymbolSpec(string Glyph, string Variables, bool Signal = false);
+
+    private static readonly BubbleSpec[] Bubbles =
+    [
+        new("--position:3%;--size:12px;--distance:72px;--duration:8.4s;--delay:-3.2s;--drift:4px"),
+        new("--position:7%;--size:25px;--distance:96px;--duration:12.6s;--delay:-9.1s;--drift:-6px"),
+        new("--position:12%;--size:9px;--distance:58px;--duration:7.2s;--delay:-1.5s;--drift:3px"),
+        new("--position:17%;--size:38px;--distance:112px;--duration:13.8s;--delay:-6.7s;--drift:7px"),
+        new("--position:21%;--size:15px;--distance:77px;--duration:9.6s;--delay:-8.2s;--drift:-3px"),
+        new("--position:26%;--size:20px;--distance:88px;--duration:11.4s;--delay:-2.4s;--drift:5px", true),
+        new("--position:31%;--size:10px;--distance:64px;--duration:7.8s;--delay:-5.9s;--drift:-4px"),
+        new("--position:35%;--size:31px;--distance:104px;--duration:12.9s;--delay:-10.5s;--drift:6px"),
+        new("--position:40%;--size:14px;--distance:81px;--duration:8.8s;--delay:-4.1s;--drift:-7px"),
+        new("--position:44%;--size:47px;--distance:118px;--duration:14s;--delay:-7.8s;--drift:4px"),
+        new("--position:48%;--size:11px;--distance:61px;--duration:7.5s;--delay:-2.8s;--drift:2px"),
+        new("--position:52%;--size:23px;--distance:91px;--duration:10.7s;--delay:-8.9s;--drift:-5px"),
+        new("--position:57%;--size:16px;--distance:70px;--duration:9.2s;--delay:-6.2s;--drift:6px"),
+        new("--position:61%;--size:36px;--distance:109px;--duration:13.3s;--delay:-3.7s;--drift:-4px"),
+        new("--position:66%;--size:13px;--distance:74px;--duration:8.1s;--delay:-7.1s;--drift:5px", true),
+        new("--position:70%;--size:27px;--distance:99px;--duration:11.9s;--delay:-1.9s;--drift:-6px"),
+        new("--position:74%;--size:8px;--distance:55px;--duration:6.8s;--delay:-4.8s;--drift:3px"),
+        new("--position:78%;--size:42px;--distance:115px;--duration:13.6s;--delay:-11.2s;--drift:7px"),
+        new("--position:82%;--size:18px;--distance:83px;--duration:9.9s;--delay:-5.2s;--drift:-4px"),
+        new("--position:87%;--size:29px;--distance:102px;--duration:12.2s;--delay:-8.5s;--drift:5px"),
+        new("--position:91%;--size:12px;--distance:67px;--duration:7.9s;--delay:-2.1s;--drift:-3px"),
+        new("--position:94%;--size:21px;--distance:89px;--duration:10.9s;--delay:-6.4s;--drift:4px", true),
+        new("--position:97%;--size:9px;--distance:60px;--duration:7.1s;--delay:-4.4s;--drift:-2px"),
+        new("--position:55%;--size:52px;--distance:121px;--duration:13.9s;--delay:-12.1s;--drift:-7px")
+    ];
+
+    private static readonly SymbolSpec[] Symbols =
+    [
+        new("☥", "--position:5%;--size:22px;--distance:132px;--duration:16s;--delay:-6s;--drift:8px;--max-opacity:.28", true),
+        new("𓂀", "--position:18%;--size:18px;--distance:108px;--duration:14.5s;--delay:-11s;--drift:-7px;--max-opacity:.22"),
+        new("𓆣", "--position:31%;--size:16px;--distance:92px;--duration:12.8s;--delay:-4s;--drift:2px;--max-opacity:.2"),
+        new("𓋹", "--position:45%;--size:28px;--distance:138px;--duration:18.5s;--delay:-14s;--drift:6px;--max-opacity:.25"),
+        new("𓅓", "--position:58%;--size:17px;--distance:101px;--duration:13.6s;--delay:-8s;--drift:-5px;--max-opacity:.18"),
+        new("☥", "--position:69%;--size:32px;--distance:148px;--duration:20s;--delay:-16s;--drift:10px;--max-opacity:.24", true),
+        new("𓃭", "--position:82%;--size:20px;--distance:116px;--duration:15.8s;--delay:-3s;--drift:-8px;--max-opacity:.21"),
+        new("𓏛", "--position:94%;--size:15px;--distance:88px;--duration:11.8s;--delay:-9s;--drift:3px;--max-opacity:.17")
+    ];
+}

@@ -1,0 +1,103 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+@inject SiteLocalization L
+
+<section class="lab-experiment-hero" aria-labelledby="lab-title">
+    <div class="hero-grid container-shell">
+        <div class="hero-copy">
+            <span class="hero-overline">@L.T("Ankh Lab") <i aria-hidden="true"></i> @L.T("Experimentação digital")</span>
+            <h1 id="lab-title">@L.T("Onde ideias viram") <em>@L.T("experiências.")</em></h1>
+            <p>@L.T("Interfaces, movimento e interação explorados além do convencional.")</p>
+            <a class="hero-action" href="/lab#experiencias" @onclick="ScrollToExperiences" @onclick:preventDefault>
+                @L.T("Explorar Ankh Lab") <span aria-hidden="true">↓</span>
+            </a>
+        </div>
+
+        <div class="experiment-board" @ref="_board" aria-hidden="true">
+            <div class="board-grid"></div>
+            <span class="board-label label-system">SYSTEM / LAB.01</span>
+            <span class="board-label label-input">INPUT: POINTER</span>
+            <span class="board-label label-output">OUTPUT: MOTION</span>
+
+            <svg class="connections" viewBox="0 0 620 420" preserveAspectRatio="none">
+                <path class="connection-line" d="M310 210 L145 106" />
+                <path class="connection-line" d="M310 210 L485 112" />
+                <path class="connection-line" d="M310 210 L142 321" />
+                <path class="connection-line" d="M310 210 L486 316" />
+                <path class="moving-signal signal-one" d="M310 210 L145 106" />
+                <path class="moving-signal signal-two" d="M310 210 L485 112" />
+                <path class="moving-signal signal-three" d="M310 210 L142 321" />
+                <path class="moving-signal signal-four" d="M310 210 L486 316" />
+            </svg>
+
+            <article class="lab-node interface-node">
+                <span class="node-index">01 — UI</span>
+                <div class="glass-surface"><span></span><span></span><span></span></div>
+                <strong>Interface</strong>
+            </article>
+
+            <article class="lab-node motion-node">
+                <span class="node-index">02 — Motion</span>
+                <div class="motion-lines"><i></i><i></i><i></i></div>
+                <strong>Motion</strong>
+            </article>
+
+            <article class="lab-node interaction-node">
+                <span class="node-index">03 — Interaction</span>
+                <div class="interaction-field"><i></i><span></span><span></span></div>
+                <strong>Interaction</strong>
+            </article>
+
+            <article class="lab-node code-node">
+                <span class="node-index">04 — Logic</span>
+                <div class="code-mark">&lt;/&gt;</div>
+                <strong>Code</strong>
+            </article>
+
+            <div class="lab-core">
+                <i></i>
+                <span>☥</span>
+                <small>@L.T("Núcleo")</small>
+            </div>
+
+            <span class="coordinate coordinate-one">X.014 / Y.028</span>
+            <span class="coordinate coordinate-two">LIVE / 60 FPS</span>
+            <i class="spark spark-one">✦</i>
+            <i class="spark spark-two">✦</i>
+        </div>
+    </div>
+
+    <a class="hero-continuation" href="/lab#experiencias" @onclick="ScrollToExperiences" @onclick:preventDefault>
+        <span>01</span><i></i><b aria-hidden="true">↓</b><strong>@L.T("Experimentos autorais")</strong>
+    </a>
+</section>
+
+@code {
+    private ElementReference _board;
+    private IJSObjectReference? _module;
+    private IJSObjectReference? _motion;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Lab/LabHeroExperiment.razor.js");
+        _motion = await _module.InvokeAsync<IJSObjectReference>("createLabHeroMotion", _board);
+    }
+
+    private async Task ScrollToExperiences()
+    {
+        if (_module is not null)
+            await _module.InvokeVoidAsync("scrollToExperiences");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_motion is not null)
+            await _motion.InvokeVoidAsync("dispose");
+
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
+}

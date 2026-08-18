@@ -1,0 +1,95 @@
+.ankh-cursor-tip,
+.ankh-cursor-halo {
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-scale: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.ankh-cursor-tip {
+    width: 14px;
+    height: 18px;
+    transform: translate3d(var(--cursor-x), var(--cursor-y), 0) scale(var(--cursor-scale));
+    transform-origin: 1px 1px;
+    filter: drop-shadow(0 0 4px rgba(217, 164, 65, .36));
+    transition: opacity .12s ease, filter .16s ease;
+}
+
+.ankh-cursor-tip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(0 0, 100% 56%, 59% 66%, 46% 100%, 31% 92%, 42% 63%, 0 78%);
+    background: linear-gradient(145deg, #f2c86f 4%, #d9a441 58%, #805d22 100%);
+}
+
+.ankh-cursor-tip::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 4px;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #b8efff;
+    box-shadow: 0 0 5px #68cbea;
+}
+
+.ankh-cursor-tip span {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 7px;
+    height: 1px;
+    z-index: 1;
+    background: rgba(3, 23, 34, .68);
+    transform: rotate(29deg);
+    transform-origin: left center;
+}
+
+.ankh-cursor-halo {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(93, 188, 218, .42);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(70, 163, 193, .08), transparent 66%);
+    transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%) scale(var(--cursor-scale));
+    transition: opacity .16s ease, width .18s ease, height .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.ankh-cursor-tip.is-visible,
+.ankh-cursor-halo.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ankh-cursor-tip.is-interactive {
+    --cursor-scale: 1.18;
+    filter: drop-shadow(0 0 7px rgba(242, 200, 111, .8));
+}
+
+.ankh-cursor-halo.is-interactive {
+    --cursor-scale: 1.24;
+    border-color: rgba(242, 200, 111, .75);
+    box-shadow: 0 0 14px rgba(217, 164, 65, .26), inset 0 0 8px rgba(217, 164, 65, .1);
+}
+
+.ankh-cursor-tip.is-pressed { --cursor-scale: .88; }
+.ankh-cursor-halo.is-pressed { --cursor-scale: .82; }
+
+@media (hover: none), (pointer: coarse) {
+    .ankh-cursor-tip,
+    .ankh-cursor-halo { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ankh-cursor-tip,
+    .ankh-cursor-halo { transition: none !important; }
+}

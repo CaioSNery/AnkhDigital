@@ -1,0 +1,28 @@
+<div class="hieroglyph-marquee" style="@CssVariables" aria-hidden="true">
+    <div class="hieroglyph-track @(MovesRight ? "moves-right" : "moves-left")">
+        <span class="hieroglyph-group"><span class="desktop-sequence">@Sequence</span><span class="mobile-sequence">@MobileSequence</span></span>
+        <span class="hieroglyph-group"><span class="desktop-sequence">@Sequence</span><span class="mobile-sequence">@MobileSequence</span></span>
+    </div>
+
+    @if (SecondaryLayer)
+    {
+        <div class="hieroglyph-track secondary @(MovesRight ? "moves-left" : "moves-right")">
+            <span class="hieroglyph-group"><span class="desktop-sequence">@SecondarySequence</span><span class="mobile-sequence">@SecondaryMobileSequence</span></span>
+            <span class="hieroglyph-group"><span class="desktop-sequence">@SecondarySequence</span><span class="mobile-sequence">@SecondaryMobileSequence</span></span>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Direction { get; set; } = "left";
+    [Parameter] public int SpeedSeconds { get; set; } = 96;
+    [Parameter] public double Opacity { get; set; } = .14;
+    [Parameter] public bool SecondaryLayer { get; set; } = true;
+    [Parameter] public string Sequence { get; set; } = "𓄿 𓃀 𓎡 𓂧 𓇋 𓆑 𓎼 𓉔 𓆓 𓃭 𓅓 𓈖 𓍯 𓊪 𓂋 𓋴 𓏏 𓅱 𓇌 𓏛 𓅄 𓆗";
+    [Parameter] public string MobileSequence { get; set; } = "𓄿 𓎡 𓂧 𓆑 𓅓 𓈖 𓊪 𓂋 𓏏 𓅄";
+    [Parameter] public string SecondarySequence { get; set; } = "𓏛 𓆗 𓅄 𓇌 𓅱 𓏏 𓋴 𓂋 𓊪 𓍯 𓈖 𓅓 𓃭 𓆓 𓉔 𓎼 𓆑 𓇋 𓂧 𓎡 𓃀 𓄿";
+    [Parameter] public string SecondaryMobileSequence { get; set; } = "𓏛 𓆗 𓅄 𓇌 𓏏 𓋴 𓂋 𓊪 𓈖 𓅓";
+
+    private bool MovesRight => string.Equals(Direction, "right", StringComparison.OrdinalIgnoreCase);
+    private string CssVariables => FormattableString.Invariant($"--marquee-duration:{Math.Max(20, SpeedSeconds)}s;--marquee-secondary-duration:{Math.Max(30, SpeedSeconds * 1.45):0.##}s;--marquee-opacity:{Math.Clamp(Opacity, 0, 1):0.###}");
+}

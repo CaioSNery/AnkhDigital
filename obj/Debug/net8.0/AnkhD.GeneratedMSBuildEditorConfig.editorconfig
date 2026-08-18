@@ -1,0 +1,147 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = AnkhD
+build_property.RootNamespace = AnkhD
+build_property.ProjectDir = C:\AnkhD\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\AnkhD
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/AnkhD/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AnkhD/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AnkhD/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AnkhD/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AnkhD/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/AnkhD/Components/CustomCursor.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDdXN0b21DdXJzb3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9somsidjph
+
+[C:/AnkhD/Components/HieroglyphMarquee.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xIaWVyb2dseXBoTWFycXVlZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-48qb0epaqw
+
+[C:/AnkhD/Components/Lab/CommerceDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcQ29tbWVyY2VEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-q4s7k4rvxl
+
+[C:/AnkhD/Components/Lab/CorporateDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcQ29ycG9yYXRlRGVtby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-hugrvbxj74
+
+[C:/AnkhD/Components/Lab/GlassDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcR2xhc3NEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-7kds58v0sm
+
+[C:/AnkhD/Components/Lab/HealthDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcSGVhbHRoRGVtby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-6kz7nm1sf4
+
+[C:/AnkhD/Components/Lab/InteractiveCardsDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcSW50ZXJhY3RpdmVDYXJkc0RlbW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ecjlpc83ww
+
+[C:/AnkhD/Components/Lab/Interactive/EnlargeGalleryDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcSW50ZXJhY3RpdmVcRW5sYXJnZUdhbGxlcnlEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-snodl66n03
+
+[C:/AnkhD/Components/Lab/Interactive/ParallaxStorytellingDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcSW50ZXJhY3RpdmVcUGFyYWxsYXhTdG9yeXRlbGxpbmdEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-dbs4cu3kyr
+
+[C:/AnkhD/Components/Lab/Interactive/PerspectiveGalleryDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcSW50ZXJhY3RpdmVcUGVyc3BlY3RpdmVHYWxsZXJ5RGVtby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-9625ixsx14
+
+[C:/AnkhD/Components/Lab/LabHeroExperiment.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcTGFiSGVyb0V4cGVyaW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9pgb9wabum
+
+[C:/AnkhD/Components/Lab/LabPreview.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcTGFiUHJldmlldy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-9gkvhbet3p
+
+[C:/AnkhD/Components/Lab/MicroInteractions/CardHeading.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcTWljcm9JbnRlcmFjdGlvbnNcQ2FyZEhlYWRpbmcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-9nc4wvdgeh
+
+[C:/AnkhD/Components/Lab/MicroInteractions/MicroInteractionsShowcase.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcTWljcm9JbnRlcmFjdGlvbnNcTWljcm9JbnRlcmFjdGlvbnNTaG93Y2FzZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-dr1df5rtsw
+
+[C:/AnkhD/Components/Lab/SaasDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcU2Fhc0RlbW8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-36yy1xct8a
+
+[C:/AnkhD/Components/Lab/UpcomingDemo.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYWJcVXBjb21pbmdEZW1vLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-0qa5b968ii
+
+[C:/AnkhD/Components/LanguageSelector.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYW5ndWFnZVNlbGVjdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-j1r9fr97yl
+
+[C:/AnkhD/Components/Sections/ComingSections.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWN0aW9uc1xDb21pbmdTZWN0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-o2xrieczre
+
+[C:/AnkhD/Components/Sections/HeroSection.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWN0aW9uc1xIZXJvU2VjdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-t0jhngs56z
+
+[C:/AnkhD/Components/Sections/LabHomeSection.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWN0aW9uc1xMYWJIb21lU2VjdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-jyh6imbklw
+
+[C:/AnkhD/Components/Sections/ServicesSection.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWN0aW9uc1xTZXJ2aWNlc1NlY3Rpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-a63mannltn
+
+[C:/AnkhD/Components/SiteFooter.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaXRlRm9vdGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-2loyx7xp0h
+
+[C:/AnkhD/Components/SiteHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaXRlSGVhZGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-iwz3cywfwx
+
+[C:/AnkhD/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-80ilxgt83s
+
+[C:/AnkhD/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-dqv4eudoo4
+
+[C:/AnkhD/Pages/Lab.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFiLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-k791c1fudl

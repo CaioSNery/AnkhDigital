@@ -1,0 +1,22 @@
+@inject SiteLocalization L
+
+<div class="saas-stage">
+    <aside aria-label="Navegação conceitual"><strong aria-label="Nexo dashboard">N</strong><span class="is-active">⌂</span><span>◇</span><span>⌁</span><i></i><span>⚙</span></aside>
+    <main>
+        <header><div><small>Workspace / @L.T("Visão geral")</small><strong>Olá, equipe fictícia</strong></div><span class="system-status"><i></i> @L.T("Todos os sistemas operacionais")</span></header>
+        <div class="metric-row"><article><span>@L.T("Receita simulada")</span><strong>@Current.Revenue</strong><small>↗ @Current.Growth</small></article><article><span>@L.T("Usuários ativos")</span><strong>@Current.Users</strong><small>@Current.NewUsers</small></article><article><span>@L.T("Conversão")</span><strong>@Current.Conversion</strong><small>4.2%</small></article></div>
+        <section class="chart-card">
+            <div class="chart-head"><div><span>@L.T("Atividade")</span><small>@L.T("Dados ilustrativos")</small></div><div class="period-selector" role="group">@foreach (var period in Periods) { <button type="button" class="@(period == _period ? "is-active" : null)" aria-pressed="@(period == _period)" @onclick="() => SelectPeriod(period)">@period</button> }</div></div>
+            <div class="chart" aria-label="Gráfico visual com dados fictícios">@foreach (var bar in Current.Bars) { <i style="@($"height:{bar}%")"><span></span></i> }</div>
+            <div class="chart-labels"><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span></div>
+        </section>
+    </main>
+</div>
+
+@code {
+    private readonly string[] Periods = ["7D", "30D", "90D"];
+    private string _period = "30D";
+    private DashboardData Current => _period switch { "7D" => new("R$ 18,4k", "+5,8%", "1.248", "84", "3,7%", [42,58,51,72,67,83,76]), "90D" => new("R$ 284k", "+31,2%", "18.692", "3.410", "5,1%", [38,48,64,57,72,86,93]), _ => new("R$ 94,8k", "+14,6%", "6.842", "926", "4,4%", [31,54,47,76,64,88,79]) };
+    private void SelectPeriod(string period) => _period = period;
+    private sealed record DashboardData(string Revenue, string Growth, string Users, string NewUsers, string Conversion, int[] Bars);
+}

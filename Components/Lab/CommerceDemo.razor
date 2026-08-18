@@ -1,0 +1,25 @@
+@inject SiteLocalization L
+
+<div class="commerce-stage tone-@_selectedTone">
+    <section class="product-visual"><span class="commerce-badge">@L.T("Nova coleção")</span><div class="lamp" aria-hidden="true"><i></i><b></b><span></span></div><small>Forma 01 / Luz ambiente</small></section>
+    <section class="product-info">
+        <header><span>@L.T("Objetos essenciais")</span><b>♡</b></header><h4>Luminária Halo</h4><p>@L.T("Iluminação suave e presença escultórica para transformar pequenos espaços.")</p><strong class="price">R$ 389,00 <small>@L.T("valor fictício")</small></strong>
+        <div class="tone-row"><span>@L.T("Acabamento:") <b>@L.T(ToneName)</b></span><div role="group"><button type="button" class="tone-sand @(_selectedTone == "sand" ? "is-selected" : null)" aria-label="@L.T("Areia")" aria-pressed="@(_selectedTone == "sand")" @onclick="SelectSand"></button><button type="button" class="tone-clay @(_selectedTone == "clay" ? "is-selected" : null)" aria-label="@L.T("Terracota")" aria-pressed="@(_selectedTone == "clay")" @onclick="SelectClay"></button><button type="button" class="tone-graphite @(_selectedTone == "graphite" ? "is-selected" : null)" aria-label="@L.T("Grafite")" aria-pressed="@(_selectedTone == "graphite")" @onclick="SelectGraphite"></button></div></div>
+        <div class="commerce-actions"><div class="quantity"><button type="button" @onclick="Decrease">−</button><span>@_quantity</span><button type="button" @onclick="Increase">＋</button></div><button class="add-button" type="button" @onclick="Add">@L.T(_added ? "Adicionado ✓" : "Adicionar")</button></div>
+        @if (_added) { <small class="add-feedback" role="status">@L.T("Interação demonstrativa — nenhum carrinho foi criado.")</small> }
+    </section>
+</div>
+
+@code {
+    private string _selectedTone = "sand";
+    private int _quantity = 1;
+    private bool _added;
+    private string ToneName => _selectedTone switch { "clay" => "Terracota", "graphite" => "Grafite", _ => "Areia" };
+    private void SelectTone(string tone) { _selectedTone = tone; _added = false; }
+    private void SelectSand() => SelectTone("sand");
+    private void SelectClay() => SelectTone("clay");
+    private void SelectGraphite() => SelectTone("graphite");
+    private void Increase() { if (_quantity < 5) _quantity++; _added = false; }
+    private void Decrease() { if (_quantity > 1) _quantity--; _added = false; }
+    private void Add() => _added = true;
+}

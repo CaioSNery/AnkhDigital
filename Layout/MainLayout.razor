@@ -1,0 +1,27 @@
+@inherits LayoutComponentBase
+@implements IDisposable
+@inject SiteLocalization Localization
+
+<CascadingValue Name="SiteLanguage" Value="Localization.Current.Code">
+    <CascadingValue Value="Localization" IsFixed="true">
+        <div class="site-shell" @key="Localization.Current.Code">
+            @Body
+        </div>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private bool _initialized;
+
+    protected override void OnInitialized() => Localization.Changed += OnLanguageChanged;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || _initialized) return;
+        _initialized = true;
+        await Localization.InitializeAsync();
+    }
+
+    private void OnLanguageChanged() => InvokeAsync(StateHasChanged);
+    public void Dispose() => Localization.Changed -= OnLanguageChanged;
+}

@@ -1,0 +1,133 @@
+@inject SiteLocalization L
+
+<section class="services section-pad" id="servicos" aria-labelledby="services-title">
+    <div class="container-shell">
+        <header class="section-heading centered">
+            <span class="section-kicker"><span aria-hidden="true">☥</span> @L.T("Nossos serviços")</span>
+            <h2 id="services-title">@L.T("Soluções que impulsionam") <em>@L.T("resultados")</em></h2>
+            <p>@L.T("Do primeiro contato à entrega, tecnologia pensada para resolver desafios reais do seu negócio.")</p>
+        </header>
+
+        <div class="services-grid">
+            @foreach (var service in Services)
+            {
+                <article class="service-card @(ReferenceEquals(_activeService, service) ? "is-active" : null)">
+                    <span class="card-number">@service.Number</span>
+                    <div class="service-icon @(service.IsCodeIcon ? "code" : null)" aria-hidden="true">@service.Icon</div>
+                    <h3>@L.T(service.Title)</h3>
+                    <p>@L.T(service.Summary)</p>
+                    <a href="/#detalhes-servicos"
+                       aria-label="@L.T(service.Title)"
+                       aria-controls="detalhes-servicos"
+                       aria-expanded="@(ReferenceEquals(_activeService, service) ? "true" : "false")"
+                       @onclick="() => SelectService(service)">
+                        @L.T("Conheça o serviço") <span>→</span>
+                    </a>
+                </article>
+            }
+        </div>
+
+        <article class="service-details" id="detalhes-servicos" aria-live="polite" aria-labelledby="service-detail-title">
+            <header class="detail-header">
+                <div>
+                    <span class="detail-eyebrow">@L.T("Serviço") @_activeService.Number <i></i> @L.T(_activeService.Category)</span>
+                    <h3 id="service-detail-title">@L.T(_activeService.Title)</h3>
+                </div>
+                <p>@L.T(_activeService.Introduction)</p>
+            </header>
+
+            <div class="detail-content">
+                <section class="deliverables" aria-labelledby="deliverables-title">
+                    <span class="detail-label" id="deliverables-title">@L.T("O que desenvolvemos")</span>
+                    <ul>
+                        @foreach (var item in _activeService.Deliverables)
+                        {
+                            <li><span aria-hidden="true">✓</span>@L.T(item)</li>
+                        }
+                    </ul>
+                </section>
+
+                <section class="service-fit" aria-labelledby="service-fit-title">
+                    <span class="detail-label" id="service-fit-title">@L.T("Indicado para")</span>
+                    <p>@L.T(_activeService.IdealFor)</p>
+                    <div class="expected-result">
+                        <span>@L.T("Resultado esperado")</span>
+                        <strong>@L.T(_activeService.Outcome)</strong>
+                    </div>
+                </section>
+            </div>
+
+            <section class="service-process" aria-labelledby="process-title">
+                <span class="detail-label" id="process-title">@L.T("Como conduzimos")</span>
+                <ol>
+                    @for (var index = 0; index < _activeService.Steps.Length; index++)
+                    {
+                        <li><span>0@(index + 1)</span><strong>@L.T(_activeService.Steps[index])</strong></li>
+                    }
+                </ol>
+            </section>
+
+            <footer class="detail-footer">
+                <p><span aria-hidden="true">◇</span> @L.T("Cada projeto recebe escopo e prioridades definidos conforme o contexto do negócio.")</p>
+                <a href="#contato">@L.T("Conversar sobre este serviço") <span aria-hidden="true">↗</span></a>
+            </footer>
+        </article>
+    </div>
+</section>
+
+@code {
+    private sealed record ServiceInfo(
+        string Number,
+        string Category,
+        string Icon,
+        string Title,
+        string Summary,
+        string Introduction,
+        string[] Deliverables,
+        string[] Steps,
+        string IdealFor,
+        string Outcome,
+        bool IsCodeIcon = false);
+
+    private static readonly ServiceInfo[] Services =
+    [
+        new(
+            "01",
+            "Presença digital",
+            "▣",
+            "Sites Profissionais",
+            "Sites modernos, responsivos e otimizados para fortalecer sua presença na internet.",
+            "Criamos sites institucionais e páginas de conversão que apresentam sua empresa com clareza, confiança e uma experiência consistente em qualquer tela.",
+            ["Arquitetura de conteúdo e interface responsiva", "Performance, acessibilidade e SEO técnico", "Formulários, métricas e integrações essenciais", "Publicação, testes e orientação para gestão"],
+            ["Imersão e objetivos", "Estrutura e protótipo", "Desenvolvimento e testes", "Publicação e evolução"],
+            "Empresas, profissionais e novos negócios que precisam consolidar presença, apresentar serviços ou apoiar uma campanha.",
+            "Uma presença digital rápida, clara e preparada para transformar visitas em oportunidades."),
+        new(
+            "02",
+            "Eficiência operacional",
+            "⚙",
+            "Automações Inteligentes",
+            "Automatize processos, economize tempo e aumente a produtividade do seu negócio.",
+            "Mapeamos tarefas repetitivas e conectamos ferramentas para reduzir trabalho manual, falhas operacionais e tempo gasto em rotinas que podem funcionar sozinhas.",
+            ["Mapeamento de processos e pontos de melhoria", "Integrações entre sistemas, APIs e webhooks", "Fluxos automáticos, alertas e notificações", "Logs, testes e documentação da operação"],
+            ["Diagnóstico do fluxo", "Desenho da automação", "Integração e validação", "Monitoramento e ajustes"],
+            "Operações com tarefas recorrentes, informações duplicadas ou equipes dependentes de processos manuais.",
+            "Processos mais previsíveis, menos retrabalho e mais tempo para decisões de maior valor."),
+        new(
+            "03",
+            "Produto e operação",
+            "</>",
+            "Sistemas Sob Medida",
+            "Soluções personalizadas para atender às necessidades específicas da sua empresa.",
+            "Desenvolvemos aplicações alinhadas às regras do seu negócio quando ferramentas prontas não acompanham o processo, a escala ou a experiência necessária.",
+            ["Painéis, portais e sistemas administrativos", "Regras de negócio, perfis e permissões", "APIs, banco de dados e integrações", "Arquitetura evolutiva, testes e implantação"],
+            ["Descoberta e requisitos", "Experiência e arquitetura", "Construção por etapas", "Entrega e continuidade"],
+            "Negócios que precisam centralizar operações, substituir controles dispersos ou criar um produto digital próprio.",
+            "Uma solução segura e evolutiva, construída em torno da operação real da empresa.",
+            true)
+    ];
+
+    private ServiceInfo _activeService = Services[0];
+
+    private void SelectService(ServiceInfo service) => _activeService = service;
+}

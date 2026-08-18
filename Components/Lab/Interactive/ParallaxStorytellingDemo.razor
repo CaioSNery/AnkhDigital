@@ -1,0 +1,100 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<section class="parallax-story" @ref="_story" aria-label="Cidades em movimento">
+    <header class="story-opening">
+        <span>Uma jornada visual</span>
+        <h4>Cidades em movimento</h4>
+        <p>Três cidades. Três atmosferas. Uma experiência guiada pelo scroll.</p>
+        <small><i aria-hidden="true">↓</i> Role para explorar</small>
+    </header>
+
+    @foreach (var story in Stories)
+    {
+        <section class="city-story" aria-labelledby="@($"city-{story.Sequence}")">
+            <div class="parallax-panel @story.AccentClass" style="@GetPanelStyle(story)">
+                <div class="parallax-media" aria-hidden="true">
+                    <img src="@story.ImageUrl" alt="" loading="lazy" />
+                </div>
+                <div class="panel-overlay" aria-hidden="true"></div>
+                <div class="panel-heading">
+                    <span>@story.Sequence</span>
+                    <h4 id="@($"city-{story.Sequence}")">@story.City</h4>
+                    <p>@story.Subtitle</p>
+                </div>
+            </div>
+
+            <div class="editorial-block">
+                <div class="editorial-index"><span>@story.Sequence</span><i></i><small>@story.City</small></div>
+                <p class="editorial-copy">@story.Description</p>
+            </div>
+        </section>
+    }
+
+    <footer class="story-ending">
+        <span>Storytelling digital</span>
+        <h4>Uma página também pode contar uma história.</h4>
+        <p>O parallax combina conteúdo, movimento e profundidade para transformar a navegação em uma experiência visual mais envolvente.</p>
+    </footer>
+</section>
+
+@code {
+    private sealed record CityStory(string Sequence, string City, string Subtitle, string Description, string ImageUrl, string ImagePosition, string AccentClass);
+
+    private static readonly IReadOnlyList<CityStory> Stories =
+    [
+        new(
+            "01",
+            "Nova York",
+            "Energia que nunca desacelera.",
+            "Nova York se organiza em camadas de movimento. A escala vertical da arquitetura acompanha o fluxo contínuo das ruas, enquanto fachadas históricas permanecem entre estruturas de vidro e luz. Cada quarteirão altera o ritmo: vozes, idiomas, letreiros e deslocamentos formam uma paisagem que nunca parece inteiramente concluída. A cidade encontra identidade justamente no contraste — entre permanência e transformação, sombra e brilho, memória e urgência. Mais do que um cenário reconhecível, Nova York é uma composição dinâmica, construída diariamente pela diversidade de quem atravessa seus espaços.",
+            "https://images.unsplash.com/photo-1527305265013-ddd1054521d6?auto=format&fit=crop&w=2200&q=82",
+            "center 48%",
+            "accent-new-york"),
+        new(
+            "02",
+            "Chicago",
+            "Arquitetura moldando o horizonte.",
+            "Chicago revela sua identidade pela arquitetura. O skyline funciona como um registro visível de diferentes épocas, reunindo estruturas históricas, torres modernas e experimentos que transformaram a maneira de construir cidades. Entre as linhas rigorosas dos edifícios e a extensão aberta do Lago Michigan, surge uma tensão particular entre densidade e horizonte. A água amplia a luz, modifica a percepção das fachadas e oferece distância para observar o conjunto urbano. Chicago não depende de um único monumento: sua personalidade nasce da relação entre escala, estrutura, clima e espaço público.",
+            "https://images.unsplash.com/photo-1493134799591-2c9eed26201a?auto=format&fit=crop&w=2200&q=82",
+            "center 46%",
+            "accent-chicago"),
+        new(
+            "03",
+            "San Francisco",
+            "Entre colinas, névoa e inovação.",
+            "San Francisco muda de perspectiva a cada subida. As colinas fragmentam a vista, revelando aos poucos fachadas, ruas inclinadas e a presença constante da baía. A névoa suaviza contornos e transforma a Golden Gate em uma estrutura que aparece e desaparece ao longo do dia. Essa atmosfera convive com outra camada igualmente marcante: a tecnologia e sua cultura de experimentação. O resultado é uma cidade de contrastes visuais e sociais, onde arquitetura histórica, infraestrutura monumental e novas ideias dividem uma geografia compacta, irregular e imediatamente reconhecível.",
+            "https://images.unsplash.com/photo-1429479196389-7d1afeaa2d21?auto=format&fit=crop&w=2200&q=82",
+            "center 50%",
+            "accent-san-francisco")
+    ];
+
+    private ElementReference _story;
+    private IJSObjectReference? _module;
+    private IJSObjectReference? _parallax;
+
+    private static string GetPanelStyle(CityStory story) =>
+        $"--story-image-position: {story.ImagePosition}; --story-image: url('{story.ImageUrl}');";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Lab/Interactive/ParallaxStorytellingDemo.razor.js");
+        _parallax = await _module.InvokeAsync<IJSObjectReference>("createParallaxStory", _story);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_parallax is not null)
+        {
+            try { await _parallax.InvokeVoidAsync("dispose"); }
+            catch (JSDisconnectedException) { }
+            await _parallax.DisposeAsync();
+        }
+
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
+}

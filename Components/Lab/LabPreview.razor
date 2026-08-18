@@ -1,0 +1,31 @@
+@inject SiteLocalization L
+
+<article class="lab-preview @(Compact ? "is-compact" : null)">
+    <header class="preview-header">
+        <div>
+            <span class="preview-index">@L.T("Experiência") @Number</span>
+            <span class="preview-category">@L.T(Category)</span>
+        </div>
+        <h3>@L.T(Name)</h3>
+        <p>@L.T(Description)</p>
+    </header>
+
+    <div class="preview-canvas">
+        @ChildContent
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(InteractionHint))
+    {
+        <footer><span aria-hidden="true">◎</span> @L.T(InteractionHint)</footer>
+    }
+</article>
+
+@code {
+    [Parameter, EditorRequired] public string Number { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Category { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Name { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Description { get; set; } = string.Empty;
+    [Parameter] public string? InteractionHint { get; set; }
+    [Parameter] public bool Compact { get; set; }
+    [Parameter, EditorRequired] public RenderFragment? ChildContent { get; set; }
+}

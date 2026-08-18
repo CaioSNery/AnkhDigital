@@ -1,0 +1,36 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+@inject SiteLocalization L
+
+<div class="interactive-stage" @ref="_stage">
+    <header><span>Workspace</span><strong>@L.T("Visão geral")</strong></header>
+    <div class="reactive-grid">
+        <article class="reactive-card accent-blue"><span class="card-icon">↗</span><small>Performance</small><strong>+24%</strong><i><b></b></i></article>
+        <article class="reactive-card accent-violet"><span class="card-icon">◇</span><small>@L.T("Projetos ativos")</small><strong>08</strong><p><span></span><span></span><span></span></p></article>
+        <article class="reactive-card accent-mint"><span class="card-icon">✓</span><small>@L.T("Eficiência")</small><strong>96.4</strong><em>@L.T("Estável")</em></article>
+    </div>
+</div>
+
+@code {
+    private ElementReference _stage;
+    private IJSObjectReference? _module;
+    private IJSObjectReference? _pointerEffect;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Lab/InteractiveCardsDemo.razor.js");
+        _pointerEffect = await _module.InvokeAsync<IJSObjectReference>("createInteractiveCardsPointer", _stage);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_pointerEffect is not null)
+            await _pointerEffect.InvokeVoidAsync("dispose");
+
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
+}

@@ -1,0 +1,22 @@
+@inject SiteLocalization L
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="hero-art" role="img" aria-label="Circuitos azuis e dourados formam um Ankh abstrato em uma malha tecnológica"></div>
+    <HieroglyphMarquee Direction="left" SpeedSeconds="104" Opacity="0.16" SecondaryLayer="true" />
+    <div class="hero-content container-shell">
+        <div class="hero-copy">
+            <span class="eyebrow">@L.T("Tecnologia com propósito")</span>
+            <h1 id="hero-title">@L.T("Transformamos ideias em") <span>@L.T("soluções digitais")</span> @L.T("de impacto.")</h1>
+            <p>@L.T("Desenvolvimento de sites, automações e sistemas sob medida para impulsionar o seu negócio.")</p>
+            <div class="hero-actions"><a class="button button-primary" href="#servicos">@L.T("Nossos Serviços") <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="#projetos"><span aria-hidden="true">◉</span> @L.T("Ver Projetos")</a></div>
+        </div>
+    </div>
+    <a class="scroll-cue" href="#servicos"><span></span> @L.T("Explore")</a>
+    <div class="hero-proof" aria-label="Diferenciais da Ankh Digital">
+        <div class="proof-inner container-shell">
+            <div class="proof-item"><b aria-hidden="true">◎</b><span><strong>@L.T("Estratégia")</strong><small>@L.T("Soluções pensadas para objetivos reais.")</small></span></div>
+            <div class="proof-item"><b aria-hidden="true">▦</b><span><strong>@L.T("Tecnologia")</strong><small>@L.T("Ferramentas modernas e resultados escaláveis.")</small></span></div>
+            <div class="proof-item"><b aria-hidden="true">⚡</b><span><strong>@L.T("Resultado")</strong><small>@L.T("Foco em performance, eficiência e crescimento.")</small></span></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,199 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+@inject SiteLocalization L
+
+<div class="micro-showcase" @ref="_showcase">
+    <article class="micro-card smart-card">
+        <CardHeading Number="01" Title="Botões inteligentes" Description="Respostas que acompanham intenção, ação e conclusão." />
+        <div class="smart-stage">
+            <button class="smart-button state-@_smartState" type="button" data-magnetic @onclick="RunSmartButtonAsync" disabled="@(_smartState == "loading")">
+                <span class="button-ripple" @key="_smartPulse" aria-hidden="true"></span>
+                @if (_smartState == "loading")
+                {
+                    <span class="spinner" aria-hidden="true"></span><span>@L.T("Processando")</span>
+                }
+                else if (_smartState == "done")
+                {
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg><span>@L.T("Concluído")</span>
+                }
+                else
+                {
+                    <span>@L.T("Explorar agora")</span><span aria-hidden="true">↗</span>
+                }
+            </button>
+            <small>@L.T("Clique para acompanhar todos os estados")</small>
+        </div>
+    </article>
+
+    <article class="micro-card input-card">
+        <CardHeading Number="02" Title="Inputs modernos" Description="Contexto, validação e segurança no momento certo." />
+        <div class="fields-demo">
+            <div class="floating-field @EmailStateClass">
+                <input id="micro-email" type="email" value="@_email" @oninput="OnEmailInput" @onblur="MarkEmailTouched" placeholder=" " autocomplete="email" />
+                <label for="micro-email">@L.T("E-mail profissional")</label>
+                <span aria-live="polite">@EmailMessage</span>
+            </div>
+            <div class="floating-field password-field">
+                <input id="micro-password" type="@(_showPassword ? "text" : "password")" @bind="_password" placeholder=" " autocomplete="current-password" />
+                <label for="micro-password">@L.T("Senha")</label>
+                <button type="button" @onclick="() => _showPassword = !_showPassword" aria-label="@(_showPassword ? "Ocultar senha" : "Mostrar senha")">
+                    @L.T(_showPassword ? "Ocultar" : "Mostrar")
+                </button>
+            </div>
+        </div>
+    </article>
+
+    <article class="micro-card selection-card">
+        <CardHeading Number="03" Title="@("Toggle & seleção")" Description="Escolhas claras com confirmação visual imediata." />
+        <label class="switch-row">
+            <span><strong>@L.T("Notificações")</strong><small>@L.T("Atualizações importantes")</small></span>
+            <input type="checkbox" role="switch" @bind="_notifications" aria-label="Ativar notificações" />
+            <i aria-hidden="true"></i>
+        </label>
+        <div class="plan-selector" role="group" aria-label="Selecionar plano">
+            @for (var index = 0; index < Plans.Length; index++)
+            {
+                var planIndex = index;
+                <button type="button" class="@(planIndex == _selectedPlan ? "selected" : null)" @onclick="() => _selectedPlan = planIndex" aria-pressed="@(planIndex == _selectedPlan ? "true" : "false")">
+                    <span>@L.T(Plans[planIndex])</span><small>@L.T(PlanDetails[planIndex])</small>
+                </button>
+            }
+        </div>
+    </article>
+
+    <article class="micro-card cursor-card">
+        <CardHeading Number="04" Title="Cards responsivos ao cursor" Description="Luz, borda e profundidade orientadas pelo movimento." />
+        <div class="spotlight-grid">
+            <button class="spotlight-item" type="button" data-spotlight aria-label="Explorar estratégia">
+                <span aria-hidden="true">◇</span><strong>@L.T("Estratégia")</strong><small>@L.T("Direção para decisões mais claras.")</small>
+            </button>
+            <button class="spotlight-item" type="button" data-spotlight aria-label="Explorar tecnologia">
+                <span aria-hidden="true">⌘</span><strong>@L.T("Tecnologia")</strong><small>@L.T("Soluções que respondem ao contexto.")</small>
+            </button>
+        </div>
+    </article>
+
+    <article class="micro-card feedback-card">
+        <CardHeading Number="05" Title="Feedback de ação" Description="O usuário sempre sabe o que está acontecendo." />
+        <div class="feedback-demo">
+            <div class="message-field"><span aria-hidden="true">✦</span><input @bind="_message" placeholder="@L.T("Escreva uma mensagem")" /></div>
+            <button type="button" @onclick="SendFeedbackAsync" disabled="@_sending">
+                @if (_sending) { <span class="spinner" aria-hidden="true"></span><span>@L.T("Enviando")</span> }
+                else { <span>@L.T("Enviar mensagem")</span><span aria-hidden="true">→</span> }
+            </button>
+        </div>
+        <div class="demo-toast @(_toastVisible ? "visible" : null)" role="status" aria-live="polite">
+            <span aria-hidden="true">✓</span><div><strong>@L.T("Mensagem enviada")</strong><small>@L.T("Recebemos sua solicitação.")</small></div>
+        </div>
+    </article>
+
+    <article class="micro-card navigation-card">
+        <CardHeading Number="06" Title="Menu / navegação" Description="Orientação visual entre opções e contextos." />
+        <div class="sliding-nav" style="@($"--nav-index: {_activeNav};")" role="tablist" aria-label="Navegação demonstrativa">
+            <i aria-hidden="true"></i>
+            @for (var index = 0; index < NavigationItems.Length; index++)
+            {
+                var navIndex = index;
+                <button type="button" role="tab" aria-selected="@(navIndex == _activeNav ? "true" : "false")" @onclick="() => _activeNav = navIndex">@L.T(NavigationItems[navIndex])</button>
+            }
+        </div>
+        <div class="compact-menu">
+            <button class="menu-trigger" type="button" @onclick="() => _menuOpen = !_menuOpen" aria-expanded="@(_menuOpen ? "true" : "false")">
+                <span>@L.T("Menu compacto")</span><i class="@(_menuOpen ? "open" : null)" aria-hidden="true"><b></b><b></b></i>
+            </button>
+            <div class="menu-panel @(_menuOpen ? "open" : null)">
+                <a href="#microinteracoes" @onclick="() => _menuOpen = false">@L.T("Visão geral")</a>
+                <a href="#microinteracoes" @onclick="() => _menuOpen = false">@L.T("Componentes")</a>
+                <a href="#microinteracoes" @onclick="() => _menuOpen = false">@L.T("Contato")</a>
+            </div>
+        </div>
+    </article>
+</div>
+
+@code {
+    private static readonly string[] Plans = ["Essencial", "Pro", "Scale"];
+    private static readonly string[] PlanDetails = ["Começar", "Popular", "Avançado"];
+    private static readonly string[] NavigationItems = ["Visão", "Dados", "Equipe"];
+
+    private readonly CancellationTokenSource _lifetime = new();
+    private ElementReference _showcase;
+    private IJSObjectReference? _module;
+    private IJSObjectReference? _effects;
+    private string _smartState = "idle";
+    private int _smartPulse;
+    private string _email = string.Empty;
+    private string _password = string.Empty;
+    private bool _emailTouched;
+    private bool _showPassword;
+    private bool _notifications = true;
+    private int _selectedPlan = 1;
+    private string _message = string.Empty;
+    private bool _sending;
+    private bool _toastVisible;
+    private int _activeNav;
+    private bool _menuOpen;
+
+    private bool EmailIsValid => _email.Contains('@') && _email.LastIndexOf('.') > _email.IndexOf('@') + 1;
+    private string EmailStateClass => !_emailTouched && string.IsNullOrWhiteSpace(_email) ? string.Empty : EmailIsValid ? "valid" : "invalid";
+    private string EmailMessage => L.T(!_emailTouched && string.IsNullOrWhiteSpace(_email) ? "Digite para ver a validação" : EmailIsValid ? "E-mail válido" : "Informe um e-mail válido");
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Lab/MicroInteractions/MicroInteractionsShowcase.razor.js");
+        _effects = await _module.InvokeAsync<IJSObjectReference>("createMicroEffects", _showcase);
+    }
+
+    private async Task RunSmartButtonAsync()
+    {
+        _smartPulse++;
+        _smartState = "loading";
+        try
+        {
+            await Task.Delay(850, _lifetime.Token);
+            _smartState = "done";
+            await InvokeAsync(StateHasChanged);
+            await Task.Delay(1500, _lifetime.Token);
+            _smartState = "idle";
+        }
+        catch (OperationCanceledException) { }
+    }
+
+    private void OnEmailInput(ChangeEventArgs args)
+    {
+        _email = args.Value?.ToString() ?? string.Empty;
+        _emailTouched = true;
+    }
+
+    private void MarkEmailTouched() => _emailTouched = true;
+
+    private async Task SendFeedbackAsync()
+    {
+        _sending = true;
+        _toastVisible = false;
+        try
+        {
+            await Task.Delay(800, _lifetime.Token);
+            _sending = false;
+            _toastVisible = true;
+            _message = string.Empty;
+            await InvokeAsync(StateHasChanged);
+            await Task.Delay(2600, _lifetime.Token);
+            _toastVisible = false;
+        }
+        catch (OperationCanceledException) { }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _lifetime.Cancel();
+        _lifetime.Dispose();
+        if (_effects is not null)
+        {
+            try { await _effects.InvokeVoidAsync("dispose"); }
+            catch (JSDisconnectedException) { }
+            await _effects.DisposeAsync();
+        }
+        if (_module is not null) await _module.DisposeAsync();
+    }
+}

@@ -1,0 +1,280 @@
+.perspective-gallery[b-9625ixsx14] {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --perspective-ease: cubic-bezier(.22, 1, .36, 1);
+    position: relative;
+    min-height: clamp(42rem, 78vh, 50rem);
+    overflow: hidden;
+    color: #f7f6f2;
+    background: #0b0d12;
+    outline: none;
+    isolation: isolate;
+}
+
+.perspective-gallery:focus-visible[b-9625ixsx14] {
+    box-shadow: inset 0 0 0 2px rgba(231, 229, 219, .85);
+}
+
+.perspective-background[b-9625ixsx14],
+.perspective-background img[b-9625ixsx14],
+.perspective-overlay[b-9625ixsx14] {
+    position: absolute;
+    inset: 0;
+}
+
+.perspective-background[b-9625ixsx14] {
+    z-index: -2;
+    animation: background-in-b-9625ixsx14 850ms var(--perspective-ease) both;
+}
+
+.perspective-background img[b-9625ixsx14] {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px) brightness(.28) saturate(.72);
+    transform: scale(1.07);
+}
+
+.perspective-overlay[b-9625ixsx14] {
+    z-index: -1;
+    background:
+        radial-gradient(circle at 50% 42%, transparent 0, rgba(7, 9, 13, .2) 35%, rgba(7, 9, 13, .7) 82%),
+        linear-gradient(180deg, rgba(7, 9, 13, .42), rgba(7, 9, 13, .72));
+}
+
+.perspective-scene[b-9625ixsx14] {
+    position: absolute;
+    inset: 2.5rem 0 6.75rem;
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+.perspective-card[b-9625ixsx14] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(17.5rem, 30vw, 27.5rem);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: .4rem;
+    background: #11141a;
+    box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, .42);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform 700ms var(--perspective-ease), opacity 500ms ease, border-color 300ms ease;
+    will-change: transform;
+}
+
+.perspective-card img[b-9625ixsx14] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0) scale(1.01);
+}
+
+.active-card[b-9625ixsx14] {
+    z-index: 3;
+    transform: translate3d(-50%, -50%, 0) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition: transform 160ms ease-out, opacity 500ms ease;
+    animation: active-arrive-b-9625ixsx14 720ms var(--perspective-ease) both;
+}
+
+.card-gradient[b-9625ixsx14] {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(4, 5, 8, .05) 30%, rgba(4, 5, 8, .9) 100%);
+    transform: translateZ(8px);
+}
+
+.card-copy[b-9625ixsx14] {
+    position: absolute;
+    z-index: 2;
+    right: 1.65rem;
+    bottom: 1.65rem;
+    left: 1.65rem;
+    transform: translateZ(30px);
+}
+
+.card-copy > span[b-9625ixsx14] {
+    display: block;
+    color: rgba(255, 255, 255, .66);
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+.card-copy h4[b-9625ixsx14] {
+    margin: .55rem 0 .65rem;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(2.15rem, 3.7vw, 3.75rem);
+    font-weight: 500;
+    line-height: .96;
+    letter-spacing: -.035em;
+}
+
+.card-copy p[b-9625ixsx14] {
+    margin: 0;
+    color: rgba(255, 255, 255, .7);
+    font-size: .75rem;
+    line-height: 1.55;
+}
+
+.card-detail[b-9625ixsx14] {
+    position: absolute;
+    z-index: 2;
+    top: 1.3rem;
+    left: 1.3rem;
+    color: rgba(255, 255, 255, .7);
+    font-size: .52rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    transform: translateZ(45px);
+}
+
+.side-card[b-9625ixsx14] {
+    z-index: 1;
+    padding: 0;
+    color: #fff;
+    cursor: pointer;
+    opacity: .52;
+}
+
+.side-card[b-9625ixsx14]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 7, 10, .14), rgba(5, 7, 10, .72));
+}
+
+.side-card span[b-9625ixsx14] {
+    position: absolute;
+    z-index: 2;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    overflow: hidden;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.previous-card[b-9625ixsx14] { transform: translate3d(-148%, -50%, -100px) rotateY(30deg) scale(.82); }
+.next-card[b-9625ixsx14] { transform: translate3d(48%, -50%, -100px) rotateY(-30deg) scale(.82); }
+.side-card:hover[b-9625ixsx14] { opacity: .75; border-color: rgba(255, 255, 255, .55); }
+.previous-card:hover[b-9625ixsx14] { transform: translate3d(-146%, -50%, -80px) rotateY(27deg) scale(.84); }
+.next-card:hover[b-9625ixsx14] { transform: translate3d(46%, -50%, -80px) rotateY(-27deg) scale(.84); }
+
+.perspective-footer[b-9625ixsx14] {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    bottom: 1.8rem;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.perspective-footer button[b-9625ixsx14] {
+    width: 2.65rem;
+    height: 2.65rem;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, .32);
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(10, 12, 17, .34);
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.perspective-footer button:hover[b-9625ixsx14] {
+    border-color: rgba(255, 255, 255, .8);
+    background: rgba(255, 255, 255, .1);
+    transform: scale(1.06);
+}
+
+.perspective-footer button:focus-visible[b-9625ixsx14],
+.side-card:focus-visible[b-9625ixsx14] {
+    outline: 2px solid #f3f0e6;
+    outline-offset: 3px;
+}
+
+.perspective-footer svg[b-9625ixsx14] {
+    width: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.perspective-count[b-9625ixsx14] {
+    min-width: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    color: rgba(255, 255, 255, .72);
+    font-size: .61rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+
+.perspective-count i[b-9625ixsx14] { width: 1.6rem; height: 1px; background: rgba(255, 255, 255, .38); }
+
+@keyframes background-in-b-9625ixsx14 {
+    from { opacity: 0; transform: scale(1.03); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes active-arrive-b-9625ixsx14 {
+    from { opacity: .25; transform: translate3d(-50%, -48%, -100px) rotateX(0) rotateY(0) scale(.9); }
+    to { opacity: 1; transform: translate3d(-50%, -50%, 0) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1); }
+}
+
+@media (max-width: 900px) {
+    .perspective-card[b-9625ixsx14] { width: clamp(16.5rem, 43vw, 22rem); }
+    .previous-card[b-9625ixsx14] { transform: translate3d(-138%, -50%, -90px) rotateY(26deg) scale(.8); }
+    .next-card[b-9625ixsx14] { transform: translate3d(38%, -50%, -90px) rotateY(-26deg) scale(.8); }
+}
+
+@media (max-width: 600px) {
+    .perspective-gallery[b-9625ixsx14] { min-height: 39rem; }
+    .perspective-scene[b-9625ixsx14] { inset: 1.75rem 0 6.5rem; perspective: 900px; }
+    .perspective-card[b-9625ixsx14] { width: min(72vw, 18.5rem); }
+    .active-card[b-9625ixsx14] { transition: opacity 350ms ease; }
+    .previous-card[b-9625ixsx14] { transform: translate3d(-121%, -50%, -80px) rotateY(22deg) scale(.76); }
+    .next-card[b-9625ixsx14] { transform: translate3d(21%, -50%, -80px) rotateY(-22deg) scale(.76); }
+    .side-card[b-9625ixsx14] { opacity: .3; }
+    .side-card span[b-9625ixsx14] { display: none; }
+    .card-copy[b-9625ixsx14] { right: 1.3rem; bottom: 1.35rem; left: 1.3rem; }
+    .card-copy h4[b-9625ixsx14] { font-size: clamp(2rem, 10vw, 2.8rem); }
+    .card-copy p[b-9625ixsx14] { font-size: .69rem; }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .active-card[b-9625ixsx14] { transform: translate3d(-50%, -50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .perspective-background[b-9625ixsx14],
+    .active-card[b-9625ixsx14] { animation: none; }
+    .perspective-card[b-9625ixsx14],
+    .perspective-footer button[b-9625ixsx14] { transition-duration: .01ms; }
+    .active-card[b-9625ixsx14] { transform: translate3d(-50%, -50%, 0); }
+    .previous-card[b-9625ixsx14] { transform: translate3d(-140%, -50%, 0) scale(.82); }
+    .next-card[b-9625ixsx14] { transform: translate3d(40%, -50%, 0) scale(.82); }
+}

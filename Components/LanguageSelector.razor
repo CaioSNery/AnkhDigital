@@ -1,0 +1,21 @@
+@inject SiteLocalization Localization
+
+<div class="language-selector" role="group" aria-label="@Localization.T("Selecionar idioma")">
+    @foreach (var language in SiteLocalization.Languages)
+    {
+        <button type="button"
+                class="@(Localization.Current.Code == language.Code ? "is-active" : null)"
+                lang="@language.Locale"
+                aria-pressed="@(Localization.Current.Code == language.Code)"
+                aria-label="@language.NativeName"
+                title="@language.NativeName"
+                @onclick="() => SelectLanguage(language.Code)">
+            <span class="language-flag" aria-hidden="true">@language.Flag</span>
+            <span class="language-code">@language.ShortName</span>
+        </button>
+    }
+</div>
+
+@code {
+    private async Task SelectLanguage(string code) => await Localization.SetAsync(code);
+}

@@ -1,0 +1,18 @@
+@inject SiteLocalization L
+
+<div class="corporate-stage">
+    <nav aria-label="Navegação conceitual"><strong>Vértice</strong><span>Atuação&nbsp;&nbsp; Visão&nbsp;&nbsp; Contato</span></nav>
+    <section>
+        <span class="corporate-label">@L.T("Estratégia & Governança")</span>
+        <h4>@L.T("Decisões precisas.")<br />@L.T("Crescimento consistente.")</h4>
+        <p>@L.T("Orientação estratégica para negócios que valorizam clareza, confiança e visão de longo prazo.")</p>
+        <button type="button" @onclick="ToggleDetails" aria-expanded="@_showDetails.ToString().ToLowerInvariant()">@L.T("Conheça nossa abordagem") <span aria-hidden="true">→</span></button>
+        @if (_showDetails)
+        {
+            <div class="corporate-detail"><span>01 Diagnóstico</span><span>02 Direção</span><span>03 Execução</span></div>
+        }
+    </section>
+    <aside><span>20</span><i></i><span>26</span></aside>
+</div>
+
+@code { private bool _showDetails; private void ToggleDetails() => _showDetails = !_showDetails; }

@@ -1,0 +1,12 @@
+@inject SiteLocalization L
+
+<header class="card-heading">
+    <span>@Number</span>
+    <div><h3>@L.T(Title)</h3><p>@L.T(Description)</p></div>
+</header>
+
+@code {
+    [Parameter, EditorRequired] public string Number { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Description { get; set; } = string.Empty;
+}

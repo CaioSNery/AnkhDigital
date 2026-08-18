@@ -1,0 +1,9 @@
+.language-selector { display:flex; align-items:center; gap:.18rem; padding:.2rem; border:1px solid rgba(218,169,73,.2); border-radius:999px; background:rgba(1,15,23,.52); direction:ltr; }
+.language-selector button { position:relative; display:grid; place-items:center; width:2rem; height:2rem; padding:0; border:0; border-radius:50%; color:var(--color-text-muted); background:transparent; cursor:pointer; transition:color .2s ease,background .2s ease,box-shadow .2s ease,transform .2s ease; }
+.language-selector button:hover,.language-selector button:focus-visible { color:var(--color-gold-light); background:rgba(218,169,73,.1); transform:translateY(-1px); }
+.language-selector button:focus-visible { outline:1px solid var(--color-gold); outline-offset:2px; }
+.language-selector button.is-active { color:#061722; background:var(--color-gold); box-shadow:0 0 16px rgba(218,169,73,.25); }
+.language-flag { font-size:1rem; line-height:1; filter:saturate(.9); }
+.language-code { position:absolute; left:50%; top:calc(100% + .42rem); padding:.18rem .3rem; border-radius:.2rem; color:var(--color-gold-light); background:#031722; font-size:.48rem; font-weight:800; letter-spacing:.08em; opacity:0; pointer-events:none; transform:translate(-50%,-.2rem); transition:.18s ease; }
+.language-selector button:hover .language-code,.language-selector button:focus-visible .language-code { opacity:1; transform:translate(-50%,0); }
+@media (max-width:900px) { .language-selector { justify-content:center; margin:.65rem .4rem .25rem; padding:.32rem; } .language-selector button { width:2.35rem;height:2.35rem; } .language-code { position:static; opacity:1; transform:none; color:inherit; font-size:.48rem; } .language-selector button { display:flex; flex-direction:column; gap:.08rem; } }

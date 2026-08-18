@@ -1,0 +1,37 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<div class="ankh-cursor-tip" @ref="_tip" aria-hidden="true"><span></span></div>
+<div class="ankh-cursor-halo" @ref="_halo" aria-hidden="true"></div>
+
+@code {
+    private ElementReference _tip;
+    private ElementReference _halo;
+    private IJSObjectReference? _module;
+    private IJSObjectReference? _cursor;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/CustomCursor.razor.js");
+        _cursor = await _module.InvokeAsync<IJSObjectReference>("createCursor", _tip, _halo);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_cursor is not null)
+            {
+                await _cursor.InvokeVoidAsync("dispose");
+                await _cursor.DisposeAsync();
+            }
+
+            if (_module is not null)
+                await _module.DisposeAsync();
+        }
+        catch (JSDisconnectedException) { }
+        catch (TaskCanceledException) { }
+    }
+}

@@ -1,0 +1,100 @@
+@inject SiteLocalization L
+
+<section class="next-chapter section-pad" id="projetos" aria-labelledby="projects-title">
+    <div class="container-shell split"><div><span class="section-kicker">@L.T("Projetos selecionados")</span><h2 id="projects-title">@L.T("Projetos que transformam") <em>@L.T("desafios em caminhos.")</em></h2></div><p>@L.T("Estratégia, presença digital e produto trabalhando juntos para resolver operações reais.")</p></div>
+    <article class="container-shell featured-project" aria-labelledby="mecapp-project-title">
+        <header class="featured-project-heading">
+            <div><span>01 / @L.T("Produto e operação")</span><strong>@L.T("Projeto em produção")</strong></div>
+            <h3 id="mecapp-project-title">MecApp</h3>
+            <p>Um ecossistema digital para profissionalizar a gestão de oficinas mecânicas, conectando aquisição, atendimento e operação.</p>
+        </header>
+
+        <div class="project-products" aria-label="Produtos desenvolvidos para o MecApp">
+            <a class="project-product" href="https://www.mecapp.com.br" target="_blank" rel="noopener noreferrer">
+                <span class="product-index">01A</span>
+                <small>@L.T("Site institucional")</small>
+                <strong>Presença que apresenta e converte.</strong>
+                <p>Proposta de valor, funcionalidades e planos organizados para apresentar o produto com clareza.</p>
+                <span class="product-link">@L.T("Visitar site") <i aria-hidden="true">↗</i></span>
+            </a>
+
+            <div class="product-connection" aria-hidden="true"><span></span><i>→</i><span></span></div>
+
+            <a class="project-product product-saas" href="https://app.mecapp.com.br" target="_blank" rel="noopener noreferrer">
+                <span class="product-index">01B</span>
+                <small>@L.T("Sistema SaaS")</small>
+                <strong>Operação centralizada em uma plataforma.</strong>
+                <p>Atendimento, ordens de serviço, estoque e financeiro reunidos no fluxo da oficina.</p>
+                <span class="product-link">@L.T("Acessar sistema") <i aria-hidden="true">↗</i></span>
+            </a>
+        </div>
+
+        <footer class="featured-project-footer">
+            <span>@L.T("Estratégia")</span><i></i><span>UX/UI</span><i></i><span>@L.T("Tecnologia")</span><i></i><span>@L.T("Sistema SaaS")</span>
+        </footer>
+    </article>
+    <div class="container-shell project-list">
+        @foreach (var project in Projects) { <article class="project-row"><span>@project.Number</span><div><small>@L.T(project.Category)</small><h3>@L.T(project.Name)</h3></div><mark>@L.T("Em desenvolvimento")</mark></article> }
+    </div>
+</section>
+<section class="about section-pad" id="sobre" aria-labelledby="about-title">
+    <div class="container-shell about-grid">
+        <div class="about-symbol" aria-hidden="true">
+            <span class="concept-word">Ideia</span>
+            <i class="concept-line line-active"><b></b></i>
+            <span class="concept-ankh">☥</span>
+            <i class="concept-line"></i>
+            <span class="concept-word">Solução</span>
+            <i class="concept-line"></i>
+            <span class="concept-word">Impacto</span>
+            <small>Design · Código · Automação</small>
+        </div>
+        <div class="about-copy">
+            <span class="section-kicker">@L.T("Sobre a Ankh Digital")</span>
+            <h2 id="about-title"><span>@L.T("Ideias bem pensadas.")</span><em>@L.T("Tecnologia bem construída.")</em></h2>
+            <p>@L.T("Desenvolvemos sites, automações e sistemas sob medida, unindo estratégia, design e tecnologia para criar soluções que façam sentido para cada negócio.")</p>
+            <div class="process-line" aria-label="Nosso processo">
+                <span>@L.T("Descobrir")</span><i aria-hidden="true"></i><span>@L.T("Planejar")</span><i aria-hidden="true"></i><span>@L.T("Criar")</span><i aria-hidden="true"></i><span>@L.T("Entregar")</span><i aria-hidden="true"></i><span>@L.T("Evoluir")</span>
+            </div>
+        </div>
+    </div>
+    <div class="about-hieroglyph-band" aria-hidden="true">
+        <div class="about-hieroglyph-track">
+            @for (var copy = 0; copy < 2; copy++)
+            {
+                <span class="about-hieroglyph-group">
+                    @foreach (var glyph in AboutGlyphs)
+                    {
+                        <i>@glyph</i>
+                    }
+                </span>
+            }
+        </div>
+    </div>
+</section>
+<section class="contact section-pad" id="contato" aria-labelledby="contact-title">
+    <div class="container-shell contact-box">
+        <span class="contact-index">04 / @L.T("Contato")</span>
+        <span class="contact-symbol" aria-hidden="true">☥</span>
+        <div class="contact-copy">
+            <span class="section-kicker">@L.T("Vamos construir juntos")</span>
+            <h2 id="contact-title">@L.T("Tem uma ideia ou precisa de uma") <em>@L.T("solução digital?")</em></h2>
+        </div>
+        <div class="contact-action">
+            <p>@L.T("Conte o que sua empresa precisa e vamos conversar sobre a melhor solução.")</p>
+            <i aria-hidden="true"></i>
+            <a class="contact-button"
+               href="https://wa.me/5571985542436?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Ankh%20Digital%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Falar sobre meu projeto pelo WhatsApp">
+                <span class="button-label">@L.T("Falar sobre meu projeto")</span><span class="button-arrow" aria-hidden="true">↗</span>
+            </a>
+        </div>
+        <span class="contact-services">Sites <i>•</i> @L.T("Automações") <i>•</i> @L.T("Sistemas")</span>
+    </div>
+</section>
+@code {
+    private readonly (string Number,string Category,string Name)[] Projects = [("02","Site institucional","Advocacia"),("03","Educação","Educação em Fisioterapia")];
+    private readonly string[] AboutGlyphs = ["𓂀", "𓋹", "𓆣", "𓅓", "𓃭", "𓏛", "𓄿", "𓇋", "𓂋", "𓊪", "𓅱", "𓆑"];
+}

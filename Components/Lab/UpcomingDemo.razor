@@ -1,0 +1,11 @@
+<div class="upcoming-stage" style="--upcoming-accent:@Accent">
+    <span class="upcoming-icon" aria-hidden="true">@Icon</span>
+    <div><small>Próxima experiência</small><strong>@Label</strong><p>Estrutura preparada para a próxima etapa do Ankh Lab.</p></div>
+    <span class="upcoming-status">Em preparação</span>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Label { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Icon { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Accent { get; set; } = "#d9a441";
+}

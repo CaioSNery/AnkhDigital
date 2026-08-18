@@ -1,0 +1,36 @@
+@inject SiteLocalization L
+
+<div class="health-stage">
+    <header>
+        <a href="#health-demo" aria-label="Início da demonstração de saúde"><span aria-hidden="true">✦</span> Equilíbrio</a>
+        <span class="availability"><i></i> @L.T("Atendimento disponível")</span>
+    </header>
+    <div class="health-layout">
+        <section class="health-intro">
+            <span class="health-kicker">@L.T("Cuidado que acompanha você")</span>
+            <h4>@L.T("Movimento com mais leveza.")</h4>
+            <p>@L.T("Um espaço conceitual para acolher, orientar e recuperar o seu bem-estar.")</p>
+            <div class="health-trust"><span><b>12+</b><small>@L.T("especialidades")</small></span><span><b>4.9</b><small>@L.T("avaliação fictícia")</small></span></div>
+        </section>
+        <section class="booking-card" aria-label="Agendamento conceitual">
+            <div class="service-row"><span class="service-icon" aria-hidden="true">＋</span><div><small>@L.T("Serviço em destaque")</small><strong>@L.T("Avaliação funcional")</strong></div><b>45 min</b></div>
+            <p>@L.T("Escolha um horário para visualizar a experiência:")</p>
+            <div class="day-selector" role="group" aria-label="Horários disponíveis">
+                @foreach (var slot in Slots)
+                {
+                    <button type="button" class="@(_selectedSlot == slot.Time ? "is-selected" : null)" aria-pressed="@(_selectedSlot == slot.Time)" @onclick="() => SelectSlot(slot.Time)"><small>@slot.Day</small><strong>@slot.Time</strong></button>
+                }
+            </div>
+            <button class="schedule-button" type="button" @onclick="Schedule">@L.T("Agendar demonstração") <span aria-hidden="true">→</span></button>
+            @if (_scheduled) { <span class="booking-feedback" role="status">Horário de @_selectedSlot selecionado — demonstração visual.</span> }
+        </section>
+    </div>
+</div>
+
+@code {
+    private readonly (string Day, string Time)[] Slots = [("SEG", "09:30"), ("TER", "14:00"), ("QUA", "16:30")];
+    private string _selectedSlot = "14:00";
+    private bool _scheduled;
+    private void SelectSlot(string time) { _selectedSlot = time; _scheduled = false; }
+    private void Schedule() => _scheduled = true;
+}

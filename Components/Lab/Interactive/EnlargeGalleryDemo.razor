@@ -1,0 +1,79 @@
+<section class="enlarge-gallery"
+         tabindex="0"
+         role="region"
+         aria-roledescription="galeria interativa"
+         aria-label="Enlarge Gallery. Use as setas para navegar."
+         @onkeydown="HandleKeyDown"
+         style="--gallery-origin: @(ActiveOrigin)%;">
+    <div class="gallery-stage" aria-live="polite" aria-atomic="true">
+        <figure class="gallery-image" @key="ImageKey">
+            <img src="@ActiveItem.ImageUrl" alt="@ActiveItem.Alt" />
+        </figure>
+        <div class="gallery-shade" aria-hidden="true"></div>
+
+        <div class="gallery-content" @key="ContentKey">
+            <span class="gallery-counter">@((ActiveIndex + 1).ToString("00")) <i></i> @Items.Count.ToString("00")</span>
+            <h3>@ActiveItem.Title</h3>
+            <p>@ActiveItem.Description</p>
+            <div class="gallery-actions" aria-label="Controles da galeria">
+                <button type="button" @onclick="Previous" aria-label="Imagem anterior">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7M8 12h10" /></svg>
+                    <span>Anterior</span>
+                </button>
+                <button type="button" @onclick="Next" aria-label="Próxima imagem">
+                    <span>Próxima</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7m6.5-7H6" /></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-thumbnails" role="tablist" aria-label="Selecionar imagem">
+        @for (var index = 0; index < Items.Count; index++)
+        {
+            var itemIndex = index;
+            var item = Items[index];
+            <button type="button"
+                    class="gallery-thumbnail @(itemIndex == ActiveIndex ? "is-active" : null)"
+                    role="tab"
+                    aria-selected="@(itemIndex == ActiveIndex)"
+                    aria-label="Abrir @item.Title"
+                    @onclick="() => SelectItem(itemIndex)">
+                <img src="@item.ImageUrl" alt="" loading="lazy" />
+                <span>@((itemIndex + 1).ToString("00"))</span>
+            </button>
+        }
+    </div>
+</section>
+
+@code {
+    private sealed record GalleryItem(int Id, string ImageUrl, string Alt, string Title, string Description);
+
+    private static readonly IReadOnlyList<GalleryItem> Items =
+    [
+        new(1, "images/lab/gallery/gallery-01.jpg", "Trilha entre pinheiros cobertos por névoa e atravessados pela luz da manhã.", "Entre Pinheiros", "Uma pausa silenciosa onde a luz encontra o caminho."),
+        new(2, "images/lab/gallery/gallery-02.jpg", "Pico rochoso acima das nuvens durante a hora azul.", "Terras Altas", "Escala, matéria e horizonte em uma paisagem essencial."),
+        new(3, "images/lab/gallery/gallery-03.jpg", "Ondas do oceano avançam sobre uma costa rochosa ao entardecer.", "Última Luz", "O instante em que o movimento do mar encontra o anoitecer."),
+        new(4, "images/lab/gallery/gallery-04.jpg", "Arquitetura contemporânea de vidro e concreto iluminada à noite.", "Depois das Horas", "Geometria urbana moldada por reflexos e intervalos de luz."),
+        new(5, "images/lab/gallery/gallery-05.jpg", "Dunas do deserto desenhadas por luz dourada e sombras longas.", "Mar de Areia", "Linhas naturais em transformação contínua sob o sol baixo."),
+        new(6, "images/lab/gallery/gallery-06.jpg", "Aurora boreal sobre montanhas nevadas e uma costa noturna.", "Ventos Solares", "Luz em movimento atravessando a quietude do extremo norte.")
+    ];
+
+    private int ActiveIndex { get; set; }
+    private GalleryItem ActiveItem => Items[ActiveIndex];
+    private string ImageKey => $"image-{ActiveItem.Id}";
+    private string ContentKey => $"content-{ActiveItem.Id}";
+    private int ActiveOrigin => Items.Count <= 1 ? 50 : ActiveIndex * 100 / (Items.Count - 1);
+
+    private void Previous() => ActiveIndex = (ActiveIndex - 1 + Items.Count) % Items.Count;
+    private void Next() => ActiveIndex = (ActiveIndex + 1) % Items.Count;
+    private void SelectItem(int index) => ActiveIndex = index;
+
+    private void HandleKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "ArrowLeft")
+            Previous();
+        else if (args.Key == "ArrowRight")
+            Next();
+    }
+}
