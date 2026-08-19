@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnkhD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b398c7ecf2b75c0256fbee224a15a6e79ffb7afa")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnkhD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnkhD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

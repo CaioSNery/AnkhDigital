@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AnkhD",
   "resources": {
-    "hash": "sha256-NvtZVGDe0ve8USvQpxPQwK5DkdYNuSROAUbO5Sy61vg=",
+    "hash": "sha256-IyLY8JZ9Lz/aLNnQD37uHYKaHc8x06r3QQL1PVAQoL4=",
     "jsModuleNative": {
       "dotnet.native.8.0.25.kee2ncecet.js": "sha256-A16ka545FHaB+QXjyJ4exXh7XpBAAIFnX8YkC4xAng8="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-ovgR6YJeXMcsAhvGJVdyjhD5pU34EEAc0BGQYTUAyNk=",
       "netstandard.wasm": "sha256-90+pPOP/3NxK0buBFJlcvDw0r6Nk/i3+oM9dt2x+LPM=",
       "System.Private.CoreLib.wasm": "sha256-IXKG8p3ppN4zPjJOxht5wSXCcbFNPH6InVm7fsThBPI=",
-      "AnkhD.wasm": "sha256-IR9EVs+WslRx8iwjzWRVJLszS0lSdpZxlQFwtXjzNWw="
+      "AnkhD.wasm": "sha256-TfG9nBaQtrgHexaiN9Jp4dYxnTwUFNDHKsoWPt8c6zo="
     },
     "pdb": {
-      "AnkhD.pdb": "sha256-uNrd8iiyqZo6r0zrwoDqyjhAANza2sIwKH6BnaioXtI="
+      "AnkhD.pdb": "sha256-CJJiVrb6698k1sRBHUaqEV5Rzka2e5eg5ey1sQ/lnZQ="
     }
   },
   "cacheBootResources": true,

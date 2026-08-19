@@ -1,12 +1,11 @@
 @page "/lab"
 @inject SiteLocalization L
 
-<PageTitle>Ankh Lab | Ankh Digital</PageTitle>
-<HeadContent>
-    <meta name="description" content="Ankh Lab: demonstrações conceituais de interfaces, design e interação desenvolvidas pela Ankh Digital." />
-    <meta property="og:title" content="Ankh Lab | Ankh Digital" />
-    <meta property="og:description" content="Ideias ganham forma através da experiência." />
-</HeadContent>
+<SeoHead Title="Ankh Lab | Experiências Interativas e Design Digital"
+         Description="Explore o Ankh Lab: interfaces, animações, microinterações e experiências web experimentais que unem design digital, UI/UX e tecnologia."
+         CanonicalUrl="https://ankhdigitalstudio.com/lab"
+         ImageUrl="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png"
+         StructuredData="@LabStructuredData" />
 
 <SiteHeader HomePrefix="/" />
 <main class="lab-page">
@@ -73,3 +72,7 @@
     </section>
 </main>
 <SiteFooter HomePrefix="/" />
+
+@code {
+    private const string LabStructuredData = "{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://ankhdigitalstudio.com/lab#webpage\",\"url\":\"https://ankhdigitalstudio.com/lab\",\"name\":\"Ankh Lab | Experiências Interativas e Design Digital\",\"description\":\"Interfaces, animações, microinterações e experiências web experimentais da Ankh Digital.\",\"inLanguage\":\"pt-BR\",\"isPartOf\":{\"@type\":\"WebSite\",\"@id\":\"https://ankhdigitalstudio.com/#website\",\"url\":\"https://ankhdigitalstudio.com/\",\"name\":\"Ankh Digital\"},\"about\":[\"Design digital\",\"UI/UX\",\"Experiências interativas\",\"Animações web\"]}";
+}

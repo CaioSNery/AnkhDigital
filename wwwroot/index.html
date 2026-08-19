@@ -3,14 +3,75 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ankh Digital | Soluções Tecnológicas</title>
+    <title>Ankh Digital | Sites, Automações e Sistemas Sob Medida</title>
+    <meta id="seo-description" name="description" content="A Ankh Digital desenvolve sites institucionais, landing pages, automações e sistemas web sob medida em Salvador, atendendo empresas em todo o Brasil." />
+    <meta id="seo-robots" name="robots" content="index, follow, max-image-preview:large" />
+    <link id="seo-canonical" rel="canonical" href="https://ankhdigitalstudio.com/" />
+
+    <meta id="seo-og-title" property="og:title" content="Ankh Digital | Sites, Automações e Sistemas Sob Medida" />
+    <meta id="seo-og-description" property="og:description" content="A Ankh Digital desenvolve sites institucionais, landing pages, automações e sistemas web sob medida em Salvador, atendendo empresas em todo o Brasil." />
+    <meta id="seo-og-type" property="og:type" content="website" />
+    <meta id="seo-og-url" property="og:url" content="https://ankhdigitalstudio.com/" />
+    <meta id="seo-og-image" property="og:image" content="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png" />
+    <meta property="og:image:width" content="1672" />
+    <meta property="og:image:height" content="941" />
+    <meta property="og:image:alt" content="Ankh dourado integrado a uma composição tecnológica em azul-petróleo." />
+    <meta property="og:site_name" content="Ankh Digital" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta id="seo-twitter-title" name="twitter:title" content="Ankh Digital | Sites, Automações e Sistemas Sob Medida" />
+    <meta id="seo-twitter-description" name="twitter:description" content="A Ankh Digital desenvolve sites institucionais, landing pages, automações e sistemas web sob medida em Salvador, atendendo empresas em todo o Brasil." />
+    <meta id="seo-twitter-image" name="twitter:image" content="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png" />
+    <meta name="twitter:image:alt" content="Ankh dourado integrado a uma composição tecnológica em azul-petróleo." />
+    <meta name="theme-color" content="#031722" />
     <base href="/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" />
+    <link rel="preload" as="image" href="/images/hero-ankh-digital-v2.png" type="image/png" fetchpriority="high" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="css/custom-cursor.css" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
     <link href="AnkhD.styles.css" rel="stylesheet" />
+    <script id="seo-jsonld" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://ankhdigitalstudio.com/#organization",
+          "name": "Ankh Digital",
+          "url": "https://ankhdigitalstudio.com/",
+          "logo": "https://ankhdigitalstudio.com/icon-192.png",
+          "sameAs": ["https://www.linkedin.com/in/caio-nery-csharp/", "https://github.com/CaioSNery/"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://ankhdigitalstudio.com/#professional-service",
+          "name": "Ankh Digital",
+          "url": "https://ankhdigitalstudio.com/",
+          "image": "https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png",
+          "serviceType": ["Criação de sites", "Automações para empresas", "Sistemas web sob medida"],
+          "areaServed": [
+            { "@type": "City", "name": "Salvador" },
+            { "@type": "AdministrativeArea", "name": "Bahia" },
+            { "@type": "Country", "name": "Brasil" }
+          ],
+          "parentOrganization": { "@id": "https://ankhdigitalstudio.com/#organization" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ankhdigitalstudio.com/#website",
+          "url": "https://ankhdigitalstudio.com/",
+          "name": "Ankh Digital",
+          "inLanguage": "pt-BR",
+          "publisher": { "@id": "https://ankhdigitalstudio.com/#organization" }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div id="app">
@@ -19,6 +80,7 @@
     </div>
     <div id="blazor-error-ui">Ocorreu um erro inesperado.<a href="" class="reload">Recarregar</a><a class="dismiss">Fechar</a></div>
     <script src="js/language.js?v=3"></script>
+    <script src="js/seo.js?v=1"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 </html>

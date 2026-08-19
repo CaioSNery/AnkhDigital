@@ -9,7 +9,7 @@
          aria-label="3D Perspective Gallery. Use as setas para navegar."
          @onkeydown="HandleKeyDown">
     <div class="perspective-background" @key="BackgroundKey" aria-hidden="true">
-        <img src="@ActiveSlide.ImageUrl" alt="" />
+        <img src="@ActiveSlide.ImageUrl" alt="" width="1600" height="900" loading="lazy" decoding="async" />
     </div>
     <div class="perspective-overlay" aria-hidden="true"></div>
 
@@ -19,12 +19,12 @@
                 @key="PreviousKey"
                 @onclick="Previous"
                 aria-label="Abrir imagem anterior: @PreviousSlide.Title">
-            <img src="@PreviousSlide.ImageUrl" alt="" loading="lazy" />
+            <img src="@PreviousSlide.ImageUrl" alt="" width="1600" height="900" loading="lazy" decoding="async" />
             <span>@PreviousSlide.Title</span>
         </button>
 
         <article class="perspective-card active-card" @key="ActiveKey" aria-live="polite">
-            <img src="@ActiveSlide.ImageUrl" alt="@ActiveSlide.Alt" />
+            <img src="@ActiveSlide.ImageUrl" alt="@ActiveSlide.Alt" width="1600" height="900" loading="lazy" decoding="async" />
             <div class="card-gradient" aria-hidden="true"></div>
             <span class="card-detail" aria-hidden="true">Ankh Lab · Depth study</span>
             <div class="card-copy">
@@ -39,7 +39,7 @@
                 @key="NextKey"
                 @onclick="Next"
                 aria-label="Abrir próxima imagem: @NextSlide.Title">
-            <img src="@NextSlide.ImageUrl" alt="" loading="lazy" />
+            <img src="@NextSlide.ImageUrl" alt="" width="1600" height="900" loading="lazy" decoding="async" />
             <span>@NextSlide.Title</span>
         </button>
     </div>

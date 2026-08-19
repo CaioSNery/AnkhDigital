@@ -1,0 +1,30 @@
+@inject IJSRuntime JS
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Description { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string CanonicalUrl { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string ImageUrl { get; set; } = string.Empty;
+    [Parameter] public string OpenGraphType { get; set; } = "website";
+    [Parameter] public string Robots { get; set; } = "index, follow, max-image-preview:large";
+    [Parameter, EditorRequired] public string StructuredData { get; set; } = string.Empty;
+
+    private bool _updatePending = true;
+
+    protected override void OnParametersSet() => _updatePending = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!_updatePending) return;
+        _updatePending = false;
+        await JS.InvokeVoidAsync(
+            "ankhSeo.apply",
+            Title,
+            Description,
+            CanonicalUrl,
+            ImageUrl,
+            OpenGraphType,
+            Robots,
+            StructuredData);
+    }
+}

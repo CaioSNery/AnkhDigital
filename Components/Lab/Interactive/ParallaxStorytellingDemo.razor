@@ -14,7 +14,7 @@
         <section class="city-story" aria-labelledby="@($"city-{story.Sequence}")">
             <div class="parallax-panel @story.AccentClass" style="@GetPanelStyle(story)">
                 <div class="parallax-media" aria-hidden="true">
-                    <img src="@story.ImageUrl" alt="" loading="lazy" />
+                    <img src="@story.ImageUrl" alt="" loading="lazy" decoding="async" />
                 </div>
                 <div class="panel-overlay" aria-hidden="true"></div>
                 <div class="panel-heading">

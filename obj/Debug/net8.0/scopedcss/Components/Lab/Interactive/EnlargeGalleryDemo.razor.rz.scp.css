@@ -66,7 +66,7 @@
     background: rgba(255, 255, 255, .45);
 }
 
-.gallery-content h3[b-snodl66n03] {
+.gallery-content h4[b-snodl66n03] {
     margin: 1rem 0 .75rem;
     color: #fff;
     font-family: var(--font-display);
@@ -216,7 +216,7 @@
         bottom: 9.2rem;
         width: calc(100% - 2.5rem);
     }
-    .gallery-content h3[b-snodl66n03] { font-size: clamp(2.55rem, 12vw, 4rem); }
+    .gallery-content h4[b-snodl66n03] { font-size: clamp(2.55rem, 12vw, 4rem); }
     .gallery-content p[b-snodl66n03] { max-width: 22rem; font-size: .8rem; }
     .gallery-actions[b-snodl66n03] { margin-top: 1.1rem; }
     .gallery-actions button[b-snodl66n03] { min-height: 2.5rem; }

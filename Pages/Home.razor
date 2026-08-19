@@ -1,14 +1,10 @@
 @page "/"
 
-<PageTitle>Ankh Digital | Soluções Tecnológicas</PageTitle>
-<HeadContent>
-    <meta name="description" content="Sites profissionais, automações inteligentes e sistemas sob medida para impulsionar o seu negócio." />
-    <meta property="og:title" content="Ankh Digital | Soluções Tecnológicas" />
-    <meta property="og:description" content="Transformamos ideias em soluções digitais de impacto." />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta name="theme-color" content="#031722" />
-</HeadContent>
+<SeoHead Title="Ankh Digital | Sites, Automações e Sistemas Sob Medida"
+         Description="A Ankh Digital desenvolve sites institucionais, landing pages, automações e sistemas web sob medida em Salvador, atendendo empresas em todo o Brasil."
+         CanonicalUrl="https://ankhdigitalstudio.com/"
+         ImageUrl="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png"
+         StructuredData="@HomeStructuredData" />
 
 <SiteHeader />
 <main>
@@ -18,3 +14,7 @@
     <ComingSections />
 </main>
 <SiteFooter />
+
+@code {
+    private const string HomeStructuredData = "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https://ankhdigitalstudio.com/#organization\",\"name\":\"Ankh Digital\",\"url\":\"https://ankhdigitalstudio.com/\",\"logo\":\"https://ankhdigitalstudio.com/icon-192.png\",\"sameAs\":[\"https://www.linkedin.com/in/caio-nery-csharp/\",\"https://github.com/CaioSNery/\"]},{\"@type\":\"ProfessionalService\",\"@id\":\"https://ankhdigitalstudio.com/#professional-service\",\"name\":\"Ankh Digital\",\"url\":\"https://ankhdigitalstudio.com/\",\"image\":\"https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png\",\"serviceType\":[\"Criação de sites\",\"Automações para empresas\",\"Sistemas web sob medida\"],\"areaServed\":[{\"@type\":\"City\",\"name\":\"Salvador\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Bahia\"},{\"@type\":\"Country\",\"name\":\"Brasil\"}],\"parentOrganization\":{\"@id\":\"https://ankhdigitalstudio.com/#organization\"}},{\"@type\":\"WebSite\",\"@id\":\"https://ankhdigitalstudio.com/#website\",\"url\":\"https://ankhdigitalstudio.com/\",\"name\":\"Ankh Digital\",\"inLanguage\":\"pt-BR\",\"publisher\":{\"@id\":\"https://ankhdigitalstudio.com/#organization\"}}]}";
+}

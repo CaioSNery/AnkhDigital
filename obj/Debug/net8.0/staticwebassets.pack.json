@@ -101,6 +101,14 @@
       "PackagePath": "staticwebassets\\js\\language.js"
     },
     {
+      "Id": "C:\\AnkhD\\wwwroot\\js\\seo.js",
+      "PackagePath": "staticwebassets\\js\\seo.js"
+    },
+    {
+      "Id": "C:\\AnkhD\\wwwroot\\lab\\index.html",
+      "PackagePath": "staticwebassets\\lab\\index.html"
+    },
+    {
       "Id": "C:\\AnkhD\\wwwroot\\robots.txt",
       "PackagePath": "staticwebassets\\robots.txt"
     },
@@ -111,6 +119,10 @@
     {
       "Id": "C:\\AnkhD\\wwwroot\\sitemap.xml",
       "PackagePath": "staticwebassets\\sitemap.xml"
+    },
+    {
+      "Id": "C:\\AnkhD\\wwwroot\\staticwebapp.config.json",
+      "PackagePath": "staticwebassets\\staticwebapp.config.json"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AnkhD.Microsoft.AspNetCore.StaticWebAssets.props",

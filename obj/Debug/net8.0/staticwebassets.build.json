@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zGCS7GxtwOWEYjnWcQ1wnCkJ1G/jBKOkN3UHV2qL5/A=",
+  "Hash": "BbVIUmS1T/qnP9FgqhQV2WIj9MYT1eEsBix90s2TowQ=",
   "Source": "AnkhD",
   "BasePath": "/",
   "Mode": "Root",
@@ -8225,6 +8225,44 @@
       "OriginalItemSpec": "wwwroot\\js\\language.js"
     },
     {
+      "Identity": "C:\\AnkhD\\wwwroot\\js\\seo.js",
+      "SourceId": "AnkhD",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\AnkhD\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "js/seo.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\seo.js"
+    },
+    {
+      "Identity": "C:\\AnkhD\\wwwroot\\lab\\index.html",
+      "SourceId": "AnkhD",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\AnkhD\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "lab/index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lab\\index.html"
+    },
+    {
       "Identity": "C:\\AnkhD\\wwwroot\\robots.txt",
       "SourceId": "AnkhD",
       "SourceType": "Discovered",
@@ -8280,6 +8318,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\sitemap.xml"
+    },
+    {
+      "Identity": "C:\\AnkhD\\wwwroot\\staticwebapp.config.json",
+      "SourceId": "AnkhD",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\AnkhD\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "staticwebapp.config.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\staticwebapp.config.json"
     }
   ]
 }

@@ -7,13 +7,13 @@
          style="--gallery-origin: @(ActiveOrigin)%;">
     <div class="gallery-stage" aria-live="polite" aria-atomic="true">
         <figure class="gallery-image" @key="ImageKey">
-            <img src="@ActiveItem.ImageUrl" alt="@ActiveItem.Alt" />
+            <img src="@ActiveItem.ImageUrl" alt="@ActiveItem.Alt" width="1672" height="941" loading="lazy" decoding="async" />
         </figure>
         <div class="gallery-shade" aria-hidden="true"></div>
 
         <div class="gallery-content" @key="ContentKey">
             <span class="gallery-counter">@((ActiveIndex + 1).ToString("00")) <i></i> @Items.Count.ToString("00")</span>
-            <h3>@ActiveItem.Title</h3>
+            <h4>@ActiveItem.Title</h4>
             <p>@ActiveItem.Description</p>
             <div class="gallery-actions" aria-label="Controles da galeria">
                 <button type="button" @onclick="Previous" aria-label="Imagem anterior">
@@ -39,7 +39,7 @@
                     aria-selected="@(itemIndex == ActiveIndex)"
                     aria-label="Abrir @item.Title"
                     @onclick="() => SelectItem(itemIndex)">
-                <img src="@item.ImageUrl" alt="" loading="lazy" />
+                <img src="@item.ImageUrl" alt="" width="1672" height="941" loading="lazy" decoding="async" />
                 <span>@((itemIndex + 1).ToString("00"))</span>
             </button>
         }

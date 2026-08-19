@@ -1,0 +1,15 @@
+{
+  "trailingSlash": "never",
+  "routes": [
+    {
+      "route": "/lab",
+      "rewrite": "/lab/index.html"
+    },
+    {
+      "route": "/images/*",
+      "headers": {
+        "Cache-Control": "public, max-age=604800"
+      }
+    }
+  ]
+}

@@ -133,6 +133,7 @@ public sealed class SiteLocalization(IJSRuntime js)
         ["Tecnologia com propósito, design com identidade."] = Row("Technology with purpose, design with identity.", "Tecnología con propósito, diseño con identidad.", "تقنية هادفة، وتصميم بهوية."),
         ["Navegação"] = Row("Navigation", "Navegación", "التنقل"),
         ["Todos os direitos reservados."] = Row("All rights reserved.", "Todos los derechos reservados.", "جميع الحقوق محفوظة."),
+        ["Salvador · BA · Atendimento remoto para todo o Brasil"] = Row("Salvador · Bahia · Remote service across Brazil", "Salvador · Bahía · Atención remota en todo Brasil", "سلفادور · باهيا · خدمات عن بُعد في جميع أنحاء البرازيل"),
 
         ["Experimentos autorais"] = Row("Original experiments", "Experimentos originales", "تجارب أصلية"),
         ["Interfaces com identidades próprias."] = Row("Interfaces with identities of their own.", "Interfaces con identidad propia.", "واجهات بهوية خاصة."),
