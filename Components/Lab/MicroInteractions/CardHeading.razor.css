@@ -1,4 +1,30 @@
-.card-heading { display:grid; grid-template-columns:2rem 1fr; gap:.8rem; align-items:start; }
-.card-heading>span { padding-top:.2rem; color:#738292; font-size:.57rem; font-weight:800; letter-spacing:.14em; }
-.card-heading h3 { margin:0; color:#f3f6f8; font-size:.9rem; font-weight:750; letter-spacing:-.01em; }
-.card-heading p { max-width:24rem; margin:.38rem 0 0; color:#83909c; font-size:.68rem; line-height:1.55; }
+.card-heading {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: .8rem;
+    align-items: start;
+}
+
+.card-heading>span {
+    padding-top: .2rem;
+    color: #738292;
+    font-size: .57rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+.card-heading h3 {
+    margin: 0;
+    color: #f3f6f8;
+    font-size: .9rem;
+    font-weight: 750;
+    letter-spacing: -.01em;
+}
+
+.card-heading p {
+    max-width: 24rem;
+    margin: .38rem 0 0;
+    color: #83909c;
+    font-size: .68rem;
+    line-height: 1.55;
+}
