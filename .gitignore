@@ -6,6 +6,24 @@
 # dotenv files
 .env
 
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Segredos/configuração local
+appsettings.Development.json
+.env
+.env.*
+
 # User-specific files
 *.rsuser
 *.suo
