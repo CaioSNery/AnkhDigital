@@ -3,14 +3,13 @@
 <footer class="site-footer">
     <svg class="footer-filter-defs" aria-hidden="true" focusable="false">
         <defs>
-            <filter id="ankh-footer-blob" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB">
+            <filter id="ankh-footer-blob" x="-30%" y="-30%" width="160%" height="180%"
+                    color-interpolation-filters="sRGB">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="5.5" result="blur" />
-                <feColorMatrix in="blur" mode="matrix"
-                               values="1 0 0 0 0
-                                       0 1 0 0 0
-                                       0 0 1 0 0
-                                       0 0 0 17 -6.5"
-                               result="blob" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 17 -6.5" result="blob" />
                 <feComposite in="SourceGraphic" in2="blob" operator="atop" />
             </filter>
         </defs>
@@ -26,7 +25,8 @@
         <div class="ankh-footer-symbols">
             @foreach (var symbol in Symbols)
             {
-                <span class="ankh-footer-symbol @(symbol.Signal ? "has-signal" : null)" style="@symbol.Variables">@symbol.Glyph</span>
+                <span class="ankh-footer-symbol @(symbol.Signal ? "has-signal" : null)"
+                      style="@symbol.Variables">@symbol.Glyph</span>
             }
         </div>
     </div>
@@ -47,8 +47,9 @@
                 <a href="https://wa.me/5571985542436?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Ankh%20Digital%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
                    target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
                 <a href="mailto:caionery40@gmail.com">E-mail <span aria-hidden="true">↗</span></a>
-                <a href="https://www.linkedin.com/in/caio-nery-csharp/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-                <a href="https://github.com/CaioSNery/" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                <a href="https://www.linkedin.com/in/caio-nery-csharp/" target="_blank"
+                   rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+
             </section>
 
             <nav class="footer-column" aria-label="@L.T("Navegação")">
@@ -109,7 +110,8 @@
         new("𓆣", "--position:31%;--size:16px;--distance:92px;--duration:12.8s;--delay:-4s;--drift:2px;--max-opacity:.2"),
         new("𓋹", "--position:45%;--size:28px;--distance:138px;--duration:18.5s;--delay:-14s;--drift:6px;--max-opacity:.25"),
         new("𓅓", "--position:58%;--size:17px;--distance:101px;--duration:13.6s;--delay:-8s;--drift:-5px;--max-opacity:.18"),
-        new("☥", "--position:69%;--size:32px;--distance:148px;--duration:20s;--delay:-16s;--drift:10px;--max-opacity:.24", true),
+        new("☥", "--position:69%;--size:32px;--distance:148px;--duration:20s;--delay:-16s;--drift:10px;--max-opacity:.24",
+true),
         new("𓃭", "--position:82%;--size:20px;--distance:116px;--duration:15.8s;--delay:-3s;--drift:-8px;--max-opacity:.21"),
         new("𓏛", "--position:94%;--size:15px;--distance:88px;--duration:11.8s;--delay:-9s;--drift:3px;--max-opacity:.17")
     ];

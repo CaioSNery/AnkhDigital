@@ -1,4 +1,30 @@
-.card-heading[b-9nc4wvdgeh] { display:grid; grid-template-columns:2rem 1fr; gap:.8rem; align-items:start; }
-.card-heading>span[b-9nc4wvdgeh] { padding-top:.2rem; color:#738292; font-size:.57rem; font-weight:800; letter-spacing:.14em; }
-.card-heading h3[b-9nc4wvdgeh] { margin:0; color:#f3f6f8; font-size:.9rem; font-weight:750; letter-spacing:-.01em; }
-.card-heading p[b-9nc4wvdgeh] { max-width:24rem; margin:.38rem 0 0; color:#83909c; font-size:.68rem; line-height:1.55; }
+.card-heading[b-9nc4wvdgeh] {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: .8rem;
+    align-items: start;
+}
+
+.card-heading>span[b-9nc4wvdgeh] {
+    padding-top: .2rem;
+    color: #738292;
+    font-size: .57rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+.card-heading h3[b-9nc4wvdgeh] {
+    margin: 0;
+    color: #f3f6f8;
+    font-size: .9rem;
+    font-weight: 750;
+    letter-spacing: -.01em;
+}
+
+.card-heading p[b-9nc4wvdgeh] {
+    max-width: 24rem;
+    margin: .38rem 0 0;
+    color: #83909c;
+    font-size: .68rem;
+    line-height: 1.55;
+}
