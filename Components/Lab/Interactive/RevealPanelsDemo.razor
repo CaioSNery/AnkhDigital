@@ -1,0 +1,36 @@
+@inject SiteLocalization L
+
+<section class="reveal-panels" aria-label="@L.T("Painéis visuais interativos")">
+    @foreach (var panel in Panels)
+    {
+        <button class="reveal-panel @(_activePanel == panel.Id ? "is-active" : null)"
+                type="button"
+                aria-pressed="@(_activePanel == panel.Id)"
+                @onclick="() => TogglePanel(panel.Id)">
+            <img class="reveal-panel__background" src="@panel.ImageUrl" alt="" loading="lazy" decoding="async" />
+            <span class="reveal-panel__overlay" aria-hidden="true"></span>
+            <span class="reveal-panel__content">
+                <strong class="reveal-panel__title">@L.T(panel.Title)</strong>
+                <span class="reveal-panel__details">
+                    <span class="reveal-panel__description">@L.T(panel.Description)</span>
+                    <span class="reveal-panel__action">@L.T(panel.Action) <i aria-hidden="true">→</i></span>
+                </span>
+            </span>
+        </button>
+    }
+</section>
+
+@code {
+    private int? _activePanel;
+
+    private static readonly Panel[] Panels =
+    [
+        new(1, "Arquitetura", "Apresente projetos e ambientes com uma experiência visual mais envolvente.", "Explorar", "https://s3-us-west-2.amazonaws.com/s.cdpn.io/65984/damian-ivanov-1628233-unsplash.jpg"),
+        new(2, "Hospitalidade", "Transforme espaços, destinos e experiências em uma apresentação memorável.", "Descobrir", "https://s3-us-west-2.amazonaws.com/s.cdpn.io/65984/damian-ivanov-1634075-unsplash.jpg"),
+        new(3, "Interiores", "Destaque detalhes, ambientes e coleções sem sobrecarregar a interface.", "Conhecer", "https://s3-us-west-2.amazonaws.com/s.cdpn.io/65984/damian-ivanov-1634077-unsplash.jpg")
+    ];
+
+    private void TogglePanel(int panelId) => _activePanel = _activePanel == panelId ? null : panelId;
+
+    private sealed record Panel(int Id, string Title, string Description, string Action, string ImageUrl);
+}

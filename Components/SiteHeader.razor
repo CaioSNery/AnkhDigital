@@ -6,6 +6,10 @@
             <span class="brand-mark" aria-hidden="true">☥</span>
             <span class="brand-copy"><strong>Ankh Digital</strong><small>@L.T("Soluções Tecnológicas")</small></span>
         </a>
+        @if (IsLab)
+        {
+            <span class="lab-header-label"><strong>ANKH LAB</strong><small>@L.T("Laboratório interativo")</small></span>
+        }
         <button class="menu-toggle" type="button" @onclick="ToggleMenu" aria-expanded="@_menuOpen.ToString().ToLowerInvariant()" aria-controls="main-navigation" aria-label="@L.T(_menuOpen ? "Fechar menu" : "Abrir menu")"><span></span><span></span><span></span></button>
         <nav id="main-navigation" class="main-nav @(_menuOpen ? "is-open" : null)" aria-label="@L.T("Navegação principal")">
             <a href="@(HomePrefix + "#inicio")" @onclick="CloseMenu">@L.T("Início")</a><a href="@(HomePrefix + "#servicos")" @onclick="CloseMenu">@L.T("Serviços")</a><a href="@(HomePrefix + "#projetos")" @onclick="CloseMenu">@L.T("Projetos")</a><a href="@(HomePrefix + "#sobre")" @onclick="CloseMenu">@L.T("Sobre")</a><a href="@(HomePrefix + "#contato")" @onclick="CloseMenu">@L.T("Contato")</a>
@@ -22,6 +26,7 @@
 
 @code {
     [Parameter] public string HomePrefix { get; set; } = string.Empty;
+    [Parameter] public bool IsLab { get; set; }
     private bool _menuOpen;
     private void ToggleMenu() => _menuOpen = !_menuOpen;
     private void CloseMenu() => _menuOpen = false;

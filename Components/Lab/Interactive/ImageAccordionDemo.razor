@@ -1,0 +1,39 @@
+@inject SiteLocalization L
+
+<section class="image-accordion" aria-label="@L.T("Galeria expansível de destinos")">
+    @foreach (var panel in Panels)
+    {
+        var contentId = $"image-accordion-content-{panel.Id}";
+        <button class="image-accordion__panel @(_activePanel == panel.Id ? "is-active" : null)"
+                type="button"
+                aria-expanded="@(_activePanel == panel.Id)"
+                aria-controls="@contentId"
+                @onclick="() => SelectPanel(panel.Id)">
+            <img class="image-accordion__background" src="@panel.ImageUrl" alt="" loading="lazy" decoding="async" />
+            <span class="image-accordion__overlay" aria-hidden="true"></span>
+            <span class="image-accordion__stub"><b>@panel.Code</b><span>@L.T(panel.Destination)</span></span>
+            <span class="image-accordion__content" id="@contentId">
+                <span class="image-accordion__route">@L.T(panel.Route)</span>
+                <strong>@L.T(panel.Destination)</strong>
+                <span class="image-accordion__description">@L.T(panel.Description)</span>
+                <span class="image-accordion__action">@L.T("Explorar destino") <i aria-hidden="true">→</i></span>
+            </span>
+        </button>
+    }
+</section>
+
+@code {
+    private int _activePanel = 1;
+
+    private static readonly DestinationPanel[] Panels =
+    [
+        new(1, "Kyoto", "KIX · JP", "Portão 04 — Japão", "Templos históricos, jardins silenciosos e uma atmosfera que combina tradição e contemplação.", "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80"),
+        new(2, "Santorini", "JTR · GR", "Portão 11 — Grécia", "Arquitetura branca, mar Egeu e paisagens marcadas por alguns dos pores do sol mais conhecidos do Mediterrâneo.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80"),
+        new(3, "Reykjavík", "KEF · IS", "Portão 07 — Islândia", "Paisagens vulcânicas, águas termais e noites onde a aurora boreal transforma completamente o horizonte.", "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80"),
+        new(4, "Marrakech", "RAK · MA", "Portão 02 — Marrocos", "Mercados, arquitetura, cores e texturas criando uma experiência visual intensa no coração de Marrocos.", "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=900&q=80")
+    ];
+
+    private void SelectPanel(int panelId) => _activePanel = panelId;
+
+    private sealed record DestinationPanel(int Id, string Destination, string Code, string Route, string Description, string ImageUrl);
+}

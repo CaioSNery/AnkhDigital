@@ -26,7 +26,7 @@
     position: absolute;
     inset: 0;
     z-index: -3;
-    background: url('/images/hero-ankh-digital-v2.png') center/cover no-repeat;
+    background: url('/images/hero-ankh-digital-v3.png') center/cover no-repeat;
 }
 
 .hero::after {

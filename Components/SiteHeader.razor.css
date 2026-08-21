@@ -55,6 +55,30 @@
     text-transform: uppercase;
 }
 
+.lab-header-label {
+    display: grid;
+    margin-right: auto;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(218, 169, 73, .28);
+    line-height: 1.15;
+}
+
+.lab-header-label strong {
+    color: var(--color-gold-light);
+    font-size: .62rem;
+    letter-spacing: .15em;
+}
+
+.lab-header-label small {
+    margin-top: .2rem;
+    color: var(--color-text-subtle);
+    font-size: .53rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
 .main-nav {
     display: flex;
     align-items: center;
@@ -137,6 +161,10 @@
 }
 
 @media (max-width:900px) {
+    .lab-header-label {
+        display: none;
+    }
+
     .menu-toggle {
         display: block;
     }

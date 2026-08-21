@@ -1,0 +1,137 @@
+.reveal-panels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: clamp(23rem, 42vw, 31rem);
+    overflow: hidden;
+    border: 1px solid rgba(218, 169, 73, .16);
+    border-radius: .5rem;
+    background: #04131b;
+}
+
+.reveal-panel {
+    position: relative;
+    min-width: 0;
+    min-height: 23rem;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    border-right: 1px solid rgba(235, 230, 214, .15);
+    color: #f6f2e9;
+    background: #04131b;
+    font: inherit;
+    text-align: left;
+    isolation: isolate;
+}
+
+.reveal-panel:last-child { border-right: 0; }
+
+.reveal-panel__background,
+.reveal-panel__overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.reveal-panel__background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform .55s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal-panel__overlay {
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(1, 15, 23, .18), rgba(1, 15, 23, .7) 68%, rgba(1, 15, 23, .93));
+    transition: background .45s ease;
+}
+
+.reveal-panel__content {
+    position: absolute;
+    z-index: 2;
+    inset: auto 1.35rem 1.35rem;
+    display: grid;
+    gap: .75rem;
+}
+
+.reveal-panel__title {
+    color: #f7f4eb;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.5vw, 2.45rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -.025em;
+    transform: translate3d(0, 0, 0);
+    transition: transform .42s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal-panel__details {
+    display: grid;
+    gap: .9rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, .65rem, 0);
+    transition: max-height .42s ease, opacity .3s ease, transform .42s cubic-bezier(.22, 1, .36, 1);
+}
+
+.reveal-panel__description {
+    color: rgba(246, 242, 233, .78);
+    font-size: .76rem;
+    line-height: 1.65;
+}
+
+.reveal-panel__action {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    width: fit-content;
+    padding-top: .7rem;
+    border-top: 1px solid rgba(226, 177, 83, .72);
+    color: #e5b453;
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.reveal-panel__action i { font-style: normal; transition: transform .25s ease; }
+
+.reveal-panel:hover .reveal-panel__background,
+.reveal-panel:focus-visible .reveal-panel__background,
+.reveal-panel.is-active .reveal-panel__background { transform: scale(1.08); }
+
+.reveal-panel:hover .reveal-panel__overlay,
+.reveal-panel:focus-visible .reveal-panel__overlay,
+.reveal-panel.is-active .reveal-panel__overlay { background: linear-gradient(180deg, rgba(1, 15, 23, .38), rgba(1, 15, 23, .8) 60%, rgba(1, 15, 23, .96)); }
+
+.reveal-panel:hover .reveal-panel__title,
+.reveal-panel:focus-visible .reveal-panel__title,
+.reveal-panel.is-active .reveal-panel__title { transform: translate3d(0, -.25rem, 0); }
+
+.reveal-panel:hover .reveal-panel__details,
+.reveal-panel:focus-visible .reveal-panel__details,
+.reveal-panel.is-active .reveal-panel__details { max-height: 11rem; opacity: 1; transform: translate3d(0, 0, 0); }
+
+.reveal-panel:hover .reveal-panel__action i,
+.reveal-panel:focus-visible .reveal-panel__action i,
+.reveal-panel.is-active .reveal-panel__action i { transform: translate3d(.2rem, 0, 0); }
+
+.reveal-panel:focus-visible { outline: 2px solid #e5b453; outline-offset: -4px; }
+
+@media (max-width: 680px) {
+    .reveal-panels { grid-template-columns: 1fr; }
+    .reveal-panel { min-height: 18rem; border-right: 0; border-bottom: 1px solid rgba(235, 230, 214, .15); }
+    .reveal-panel:last-child { border-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-panel__background,
+    .reveal-panel__overlay,
+    .reveal-panel__title,
+    .reveal-panel__details,
+    .reveal-panel__action i { transition: none; }
+
+    .reveal-panel:hover .reveal-panel__background,
+    .reveal-panel:focus-visible .reveal-panel__background,
+    .reveal-panel.is-active .reveal-panel__background { transform: none; }
+}

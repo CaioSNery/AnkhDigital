@@ -4,28 +4,78 @@
 <SeoHead Title="Ankh Lab | Experiências Interativas e Design Digital"
          Description="Explore o Ankh Lab: interfaces, animações, microinterações e experiências web experimentais que unem design digital, UI/UX e tecnologia."
          CanonicalUrl="https://ankhdigitalstudio.com/lab"
-         ImageUrl="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png"
-         StructuredData="@LabStructuredData" />
+         ImageUrl="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png" StructuredData="@LabStructuredData" />
 
-<SiteHeader HomePrefix="/" />
+<SiteHeader HomePrefix="/" IsLab="true" />
 <main class="lab-page">
     <LabHeroExperiment />
 
-    <section class="lab-catalog section-pad" id="experiencias" aria-labelledby="catalog-title">
+    <nav class="lab-quick-nav" aria-label="@L.T("Explore o Lab")">
+        <div class="container-shell lab-quick-nav-inner">
+            <span class="lab-quick-nav-label">@L.T("Explore o Lab")</span>
+            <div class="lab-quick-nav-links">
+                <a href="/lab#interfaces"><b>01</b><span>@L.T("Interfaces")</span><i aria-hidden="true">↘</i></a>
+                <a href="/lab#interatividade"><b>02</b><span>@L.T("Interatividade")</span><i aria-hidden="true">↘</i></a>
+                <a href="/lab#microinteracoes"><b>03</b><span>@L.T("Microinterações")</span><i aria-hidden="true">↘</i></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="lab-catalog section-pad" id="interfaces" aria-labelledby="catalog-title">
+        <span id="experiencias" class="lab-legacy-anchor" aria-hidden="true"></span>
         <div class="container-shell">
-            <header class="catalog-heading"><span>@L.T("Experimentos autorais")</span><h2 id="catalog-title">@L.T("Interfaces com identidades próprias.")</h2><p>@L.T("O contexto muda. A atenção aos detalhes permanece.")</p></header>
+            <header class="catalog-heading"><span>@L.T("Experimentos autorais")</span>
+                <h2 id="catalog-title">@L.T("Interfaces com identidades próprias.")</h2>
+                <p>@L.T("O contexto muda. A atenção aos detalhes permanece.")</p>
+            </header>
             <div class="catalog-grid">
-                <div class="lab-entry"><LabPreview Number="01" Category="Interface" Name="Glass Interface" Description="Transparência, profundidade e movimento para interfaces modernas." InteractionHint="Clique em Ver análise"><GlassDemo /></LabPreview></div>
-                <div class="lab-entry"><LabPreview Number="02" Category="Interação" Name="Interactive Cards" Description="Movimento sutil e luz responsiva para destacar informações importantes." InteractionHint="Mova o cursor sobre os cards"><InteractiveCardsDemo /></LabPreview></div>
-                <div class="lab-entry"><LabPreview Number="03" Category="Institucional" Name="Premium Corporate" Description="Clareza, confiança e sofisticação para negócios de alto valor." InteractionHint="Experimente o CTA"><CorporateDemo /></LabPreview></div>
-                <div class="lab-entry"><LabPreview Number="04" Category="Saúde" Name="Health &amp; Wellness" Description="Uma experiência leve e acolhedora para saúde e bem-estar." InteractionHint="Selecione um horário"><HealthDemo /></LabPreview></div>
-                <div class="lab-entry"><LabPreview Number="05" Category="Produto digital" Name="Tech / SaaS" Description="Indicadores e dados fictícios em uma interface de produto moderna." InteractionHint="Alterne o período do gráfico"><SaasDemo /></LabPreview></div>
-                <div class="lab-entry"><LabPreview Number="06" Category="Comércio" Name="Modern Commerce" Description="Produto, seleção e microinterações em uma experiência de compra conceitual." InteractionHint="Escolha o acabamento e adicione"><CommerceDemo /></LabPreview></div>
+                <div class="lab-entry">
+                    <LabPreview Number="01" Category="Interface" Name="Glass Interface"
+                                Description="Transparência, profundidade e movimento para interfaces modernas."
+                                InteractionHint="Clique em Ver análise">
+                        <GlassDemo />
+                    </LabPreview>
+                </div>
+                <div class="lab-entry">
+                    <LabPreview Number="02" Category="Interação" Name="Interactive Cards"
+                                Description="Movimento sutil e luz responsiva para destacar informações importantes."
+                                InteractionHint="Mova o cursor sobre os cards">
+                        <InteractiveCardsDemo />
+                    </LabPreview>
+                </div>
+                <div class="lab-entry">
+                    <LabPreview Number="03" Category="Institucional" Name="Premium Corporate"
+                                Description="Clareza, confiança e sofisticação para negócios de alto valor."
+                                InteractionHint="Experimente o CTA">
+                        <CorporateDemo />
+                    </LabPreview>
+                </div>
+                <div class="lab-entry">
+                    <LabPreview Number="04" Category="Saúde" Name="Health &amp; Wellness"
+                                Description="Uma experiência leve e acolhedora para saúde e bem-estar."
+                                InteractionHint="Selecione um horário">
+                        <HealthDemo />
+                    </LabPreview>
+                </div>
+                <div class="lab-entry">
+                    <LabPreview Number="05" Category="Produto digital" Name="Tech / SaaS"
+                                Description="Indicadores e dados fictícios em uma interface de produto moderna."
+                                InteractionHint="Alterne o período do gráfico">
+                        <SaasDemo />
+                    </LabPreview>
+                </div>
+                <div class="lab-entry">
+                    <LabPreview Number="06" Category="Comércio" Name="Modern Commerce"
+                                Description="Produto, seleção e microinterações em uma experiência de compra conceitual."
+                                InteractionHint="Escolha o acabamento e adicione">
+                        <CommerceDemo />
+                    </LabPreview>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="interactive-catalog section-pad" aria-labelledby="interactive-title">
+    <section class="interactive-catalog section-pad" id="interatividade" aria-labelledby="interactive-title">
         <div class="container-shell">
             <header class="interactive-heading">
                 <span>@L.T("Experiências interativas")</span>
@@ -35,27 +85,55 @@
 
             <article class="interactive-entry" aria-labelledby="enlarge-gallery-title">
                 <header class="interactive-entry-heading">
-                    <div><span>@L.T("Experiência") 01</span><h3 id="enlarge-gallery-title">Enlarge Gallery</h3></div>
-                    <p>Galeria editorial · Navegação interativa</p>
+                    <div><span>@L.T("Experiência") 01</span>
+                        <h3 id="enlarge-gallery-title">Enlarge Gallery</h3>
+                    </div>
+                    <p>@L.T("Uma forma mais envolvente de apresentar produtos, ambientes ou projetos.")</p>
                 </header>
                 <EnlargeGalleryDemo />
             </article>
 
             <article class="interactive-entry" aria-labelledby="perspective-gallery-title">
                 <header class="interactive-entry-heading">
-                    <div><span>@L.T("Experiência") 02</span><h3 id="perspective-gallery-title">3D Perspective Gallery</h3></div>
-                    <p>Profundidade, movimento e interação transformando um carousel tradicional em uma experiência tridimensional.</p>
+                    <div><span>@L.T("Experiência") 02</span>
+                        <h3 id="perspective-gallery-title">3D Perspective Gallery</h3>
+                    </div>
+                    <p>@L.T("Elementos que respondem ao movimento e tornam a navegação mais imersiva.")</p>
                 </header>
                 <PerspectiveGalleryDemo />
             </article>
 
             <article class="interactive-entry" aria-labelledby="parallax-story-title">
                 <header class="interactive-entry-heading">
-                    <div><span>@L.T("Experiência") 03</span><h3 id="parallax-story-title">Parallax Storytelling</h3></div>
-                    <p>Fotografia, profundidade e movimento criando narrativas que acompanham a rolagem.</p>
+                    <div><span>@L.T("Experiência") 03</span>
+                        <h3 id="parallax-story-title">Parallax Storytelling</h3>
+                    </div>
+                    <p>@L.T("Profundidade e movimento para transformar a apresentação de uma história.")</p>
                 </header>
                 <p class="interactive-scroll-cue"><span aria-hidden="true">↓</span> @L.T("Role para explorar")</p>
                 <ParallaxStorytellingDemo />
+            </article>
+
+            <article class="interactive-entry" aria-labelledby="reveal-panels-title">
+                <header class="interactive-entry-heading">
+                    <div><span>@L.T("Experiência") 04</span>
+                        <h3 id="reveal-panels-title">Reveal Panels</h3>
+                    </div>
+                    <p>@L.T("Painéis visuais que revelam novas informações conforme o usuário interage.")</p>
+                </header>
+                <p class="interactive-scroll-cue reveal-panels-instruction"><span aria-hidden="true">↗</span><span class="reveal-panels-pointer">@L.T("Mova o cursor sobre os painéis")</span><span class="reveal-panels-touch">@L.T("Toque nos painéis")</span></p>
+                <RevealPanelsDemo />
+            </article>
+
+            <article class="interactive-entry" aria-labelledby="image-accordion-title">
+                <header class="interactive-entry-heading">
+                    <div><span>@L.T("Experiência") 05</span>
+                        <h3 id="image-accordion-title">Image Accordion</h3>
+                    </div>
+                    <p>@L.T("Uma galeria expansível que transforma imagens em uma navegação visual dinâmica e imersiva.")</p>
+                </header>
+                <p class="interactive-scroll-cue image-accordion-instruction"><span aria-hidden="true">↗</span><span class="image-accordion-pointer">@L.T("Passe o cursor ou selecione um destino")</span><span class="image-accordion-touch">@L.T("Toque em um destino para explorar")</span></p>
+                <ImageAccordionDemo />
             </article>
         </div>
     </section>
@@ -74,5 +152,6 @@
 <SiteFooter HomePrefix="/" />
 
 @code {
-    private const string LabStructuredData = "{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://ankhdigitalstudio.com/lab#webpage\",\"url\":\"https://ankhdigitalstudio.com/lab\",\"name\":\"Ankh Lab | Experiências Interativas e Design Digital\",\"description\":\"Interfaces, animações, microinterações e experiências web experimentais da Ankh Digital.\",\"inLanguage\":\"pt-BR\",\"isPartOf\":{\"@type\":\"WebSite\",\"@id\":\"https://ankhdigitalstudio.com/#website\",\"url\":\"https://ankhdigitalstudio.com/\",\"name\":\"Ankh Digital\"},\"about\":[\"Design digital\",\"UI/UX\",\"Experiências interativas\",\"Animações web\"]}";
+    private const string LabStructuredData =
+"{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"@id\":\"https://ankhdigitalstudio.com/lab#webpage\",\"url\":\"https://ankhdigitalstudio.com/lab\",\"name\":\"Ankh Lab | Experiências Interativas e Design Digital\",\"description\":\"Interfaces, animações, microinterações e experiências web experimentais da Ankh Digital.\",\"inLanguage\":\"pt-BR\",\"isPartOf\":{\"@type\":\"WebSite\",\"@id\":\"https://ankhdigitalstudio.com/#website\",\"url\":\"https://ankhdigitalstudio.com/\",\"name\":\"Ankh Digital\"},\"about\":[\"Design digital\",\"UI/UX\",\"Experiências interativas\",\"Animações web\"]}";
 }

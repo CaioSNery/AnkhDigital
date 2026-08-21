@@ -157,12 +157,13 @@
 <body>
 
   <div id="app">
-    <svg class="loading-progress" aria-hidden="true">
-      <circle r="40%" cx="50%" cy="50%" />
-      <circle r="40%" cx="50%" cy="50%" />
-    </svg>
+    <div class="loading-screen" role="status" aria-label="Carregando aplicação">
+      <div class="loading-horus" aria-hidden="true">
+        <img src="/images/olho-horus.png" alt="" />
+      </div>
 
-    <div class="loading-progress-text" aria-hidden="true">
+      <div class="loading-progress-text" aria-live="polite" aria-atomic="true">
+      </div>
     </div>
   </div>
 
