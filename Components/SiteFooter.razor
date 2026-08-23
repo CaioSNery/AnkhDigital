@@ -1,4 +1,6 @@
+@implements IAsyncDisposable
 @inject SiteLocalization L
+@inject IJSRuntime JS
 
 <footer class="site-footer">
     <svg class="footer-filter-defs" aria-hidden="true" focusable="false">
@@ -46,7 +48,10 @@
                 <h2 id="footer-contact-title">@L.T("Contato")</h2>
                 <a href="https://wa.me/5571985542436?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Ankh%20Digital%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
                    target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
-                <a href="mailto:caionery40@gmail.com">E-mail <span aria-hidden="true">↗</span></a>
+                <button class="footer-contact-email" type="button" @ref="_emailTrigger" @onclick="OpenEmailDialog"
+                        aria-haspopup="dialog" aria-label="Abrir opções de contato por e-mail">
+                    E-mail <span aria-hidden="true">↗</span>
+                </button>
                 <a href="https://www.linkedin.com/in/caio-nery-csharp/" target="_blank"
                    rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
 
@@ -69,8 +74,119 @@
     </div>
 </footer>
 
+@if (_isEmailDialogOpen)
+{
+    <div class="footer-email-backdrop" @onclick="CloseEmailDialog" aria-hidden="true"></div>
+    <div class="footer-email-dialog" role="dialog" aria-modal="true" aria-labelledby="footer-email-title"
+         aria-describedby="footer-email-address" tabindex="-1" @ref="_emailDialog" @onkeydown="HandleDialogKeyDown">
+        <div class="footer-email-dialog__heading">
+            <h2 id="footer-email-title">E-mail</h2>
+            <button class="footer-email-dialog__close" type="button" @onclick="CloseEmailDialog" aria-label="Fechar opções de e-mail">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <p id="footer-email-address" class="footer-email-dialog__address">@EmailAddress</p>
+        <button class="footer-email-dialog__copy" type="button" @onclick="CopyEmailAsync">
+            @(_emailCopied ? "E-mail copiado ✓" : "Copiar e-mail")
+        </button>
+        <a class="footer-email-dialog__mailto" href="mailto:caionery40@gmail.com">
+            Abrir aplicativo de e-mail <span aria-hidden="true">↗</span>
+        </a>
+    </div>
+}
+
 @code {
     [Parameter] public string HomePrefix { get; set; } = string.Empty;
+
+    private const string EmailAddress = "caionery40@gmail.com";
+    private ElementReference _emailTrigger;
+    private ElementReference _emailDialog;
+    private IJSObjectReference? _module;
+    private CancellationTokenSource? _copyFeedbackCancellation;
+    private bool _isEmailDialogOpen;
+    private bool _emailCopied;
+    private bool _focusDialog;
+    private bool _focusEmailTrigger;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/SiteFooter.razor.js");
+
+        if (_focusDialog)
+        {
+            _focusDialog = false;
+            await _emailDialog.FocusAsync();
+        }
+        else if (_focusEmailTrigger)
+        {
+            _focusEmailTrigger = false;
+            await _emailTrigger.FocusAsync();
+        }
+    }
+
+    private void OpenEmailDialog()
+    {
+        _isEmailDialogOpen = true;
+        _focusDialog = true;
+    }
+
+    private void CloseEmailDialog()
+    {
+        _copyFeedbackCancellation?.Cancel();
+        _emailCopied = false;
+        _isEmailDialogOpen = false;
+        _focusEmailTrigger = true;
+    }
+
+    private void HandleDialogKeyDown(KeyboardEventArgs args)
+    {
+        if (args.Key == "Escape")
+            CloseEmailDialog();
+    }
+
+    private async Task CopyEmailAsync()
+    {
+        var copied = false;
+        try
+        {
+            _module ??= await JS.InvokeAsync<IJSObjectReference>("import", "./Components/SiteFooter.razor.js");
+            copied = await _module.InvokeAsync<bool>("copyEmail", EmailAddress);
+        }
+        catch (JSException)
+        {
+            // The fallback is handled by the small JS module; leave the button unchanged if it also fails.
+        }
+
+        if (!copied)
+            return;
+
+        _copyFeedbackCancellation?.Cancel();
+        _copyFeedbackCancellation?.Dispose();
+        _copyFeedbackCancellation = new CancellationTokenSource();
+        var cancellationToken = _copyFeedbackCancellation.Token;
+
+        _emailCopied = true;
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
+            _emailCopied = false;
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (TaskCanceledException)
+        {
+            // A close or a new copy action superseded this feedback period.
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        _copyFeedbackCancellation?.Cancel();
+        _copyFeedbackCancellation?.Dispose();
+
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
 
     private sealed record BubbleSpec(string Variables, bool Gold = false);
     private sealed record SymbolSpec(string Glyph, string Variables, bool Signal = false);
