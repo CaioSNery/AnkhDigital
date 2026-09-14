@@ -1,0 +1,27 @@
+@page "/privacidade"
+
+<SeoHead Title="Política de Privacidade | Ankh Digital"
+         Description="Informações sobre o uso de dados enviados voluntariamente à Ankh Digital."
+         CanonicalUrl="https://ankhdigitalstudio.com/privacidade"
+         ImageUrl="https://ankhdigitalstudio.com/images/hero-ankh-digital-v2.png"
+         StructuredData="@PrivacyStructuredData" />
+
+<SiteHeader HomePrefix="/" />
+<main class="privacy-page">
+    <article class="container-shell privacy-content" aria-labelledby="privacy-title">
+        <span>PRIVACIDADE</span>
+        <h1 id="privacy-title">Política de Privacidade</h1>
+        <p>Esta política explica, de forma simples, como tratamos informações fornecidas voluntariamente pelos canais de contato da Ankh Digital.</p>
+
+        <section><h2>Dados fornecidos voluntariamente</h2><p>Podemos receber dados como nome, e-mail, telefone e informações sobre seu projeto quando você escolhe entrar em contato.</p></section>
+        <section><h2>Finalidade de contato</h2><p>Essas informações são utilizadas para atendimento, comunicação e acompanhamento relacionado aos serviços solicitados.</p></section>
+        <section><h2>Proteção e compartilhamento</h2><p>Não comercializamos dados pessoais. Adotamos medidas razoáveis para proteger as informações recebidas, considerando a natureza de cada canal utilizado.</p></section>
+        <section><h2>Links externos</h2><p>Links para sites ou serviços de terceiros possuem práticas próprias de privacidade. Recomendamos consultar as políticas aplicáveis antes de fornecer dados nesses ambientes.</p></section>
+        <section><h2>Contato sobre privacidade</h2><p>Para dúvidas sobre privacidade ou informações enviadas à Ankh Digital, escreva para <a href="mailto:caionery40@gmail.com">caionery40@gmail.com</a>.</p></section>
+    </article>
+</main>
+<SiteFooter HomePrefix="/" />
+
+@code {
+    private const string PrivacyStructuredData = "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"url\":\"https://ankhdigitalstudio.com/privacidade\",\"name\":\"Política de Privacidade | Ankh Digital\",\"inLanguage\":\"pt-BR\"}";
+}

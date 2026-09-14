@@ -1,0 +1,44 @@
+<article class="project-accordion @(IsOpen ? "is-open" : null) @(!string.IsNullOrWhiteSpace(LogoUrl) ? "has-logo" : "no-logo")" aria-labelledby="@TitleId">
+    <button class="project-accordion__trigger"
+            type="button"
+            aria-expanded="@IsOpen"
+            aria-controls="@ContentId"
+            @onclick="OnToggle">
+        <span class="project-accordion__number">@Number</span>
+        <span class="project-accordion__category">@Category</span>
+        @if (!string.IsNullOrWhiteSpace(LogoUrl))
+        {
+            <span class="project-accordion__logo"><img src="@LogoUrl" alt="" /></span>
+        }
+        <span id="@TitleId" class="project-accordion__name" role="heading" aria-level="3">
+            <span class="project-accordion__name-primary">@Name</span>
+            @if (!string.IsNullOrWhiteSpace(NameComplement))
+            {
+                <small class="project-accordion__name-complement">@NameComplement</small>
+            }
+        </span>
+        <span class="project-accordion__status">@Status</span>
+        <span class="project-accordion__chevron" aria-hidden="true">↓</span>
+    </button>
+    <div id="@ContentId" class="project-accordion__content" role="region" aria-labelledby="@TitleId">
+        <div class="project-accordion__content-inner">
+            @ChildContent
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired] public string Id { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Number { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Category { get; set; } = string.Empty;
+    [Parameter, EditorRequired] public string Name { get; set; } = string.Empty;
+    [Parameter] public string? NameComplement { get; set; }
+    [Parameter, EditorRequired] public string Status { get; set; } = string.Empty;
+    [Parameter] public string? LogoUrl { get; set; }
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback OnToggle { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    private string TitleId => $"{Id}-title";
+    private string ContentId => $"{Id}-content";
+}

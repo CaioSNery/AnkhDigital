@@ -1,0 +1,36 @@
+.mobile-orientation-hint {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    z-index: 60;
+    display: none;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: .65rem;
+    width: min(calc(100% - 2rem), 23rem);
+    padding: .7rem .75rem;
+    border: 1px solid rgba(218, 169, 73, .24);
+    border-radius: .45rem;
+    color: var(--color-text);
+    background: rgba(2, 18, 27, .9);
+    box-shadow: 0 .75rem 2rem rgba(0, 0, 0, .2);
+    backdrop-filter: blur(10px);
+    transform: translate3d(-50%, .45rem, 0);
+    animation: orientation-hint-enter .28s ease-out both;
+}
+
+.mobile-orientation-hint__icon { color: var(--color-gold); font-size: 1.15rem; }
+.mobile-orientation-hint p { margin: 0; font-size: .66rem; line-height: 1.45; }
+.mobile-orientation-hint button { width: 1.5rem; height: 1.5rem; padding: 0; border: 0; border-radius: .2rem; color: var(--color-text-muted); background: transparent; font-size: 1rem; line-height: 1; }
+.mobile-orientation-hint button:hover { color: var(--color-gold-light); background: rgba(218, 169, 73, .08); }
+.mobile-orientation-hint button:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 2px; }
+
+@keyframes orientation-hint-enter { to { opacity: 1; transform: translate3d(-50%, 0, 0); } }
+
+@media (max-width: 600px) and (orientation: portrait) and (pointer: coarse) {
+    .mobile-orientation-hint { display: grid; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-orientation-hint { animation: none; transform: translate3d(-50%, 0, 0); }
+}

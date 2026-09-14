@@ -1,0 +1,41 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+@if (_ready && !_dismissed)
+{
+    <aside class="mobile-orientation-hint" aria-label="Sugestão de visualização">
+        <span class="mobile-orientation-hint__icon" aria-hidden="true">↻</span>
+        <p>Para uma experiência visual mais ampla, experimente girar seu dispositivo.</p>
+        <button type="button" @onclick="DismissAsync" aria-label="Dispensar sugestão de orientação">×</button>
+    </aside>
+}
+
+@code {
+    private IJSObjectReference? _module;
+    private bool _ready;
+    private bool _dismissed;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/MobileOrientationHint.razor.js");
+        _dismissed = await _module.InvokeAsync<bool>("wasDismissed");
+        _ready = true;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task DismissAsync()
+    {
+        _dismissed = true;
+        if (_module is not null)
+            await _module.InvokeVoidAsync("dismiss");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
+}

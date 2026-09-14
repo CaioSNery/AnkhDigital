@@ -286,6 +286,11 @@ public sealed class SiteLocalization(IJSRuntime js)
         ["Portão 02 — Marrocos"] = Row("Gate 02 — Morocco", "Puerta 02 — Marruecos", "البوابة 02 — المغرب"),
         ["Mercados, arquitetura, cores e texturas criando uma experiência visual intensa no coração de Marrocos."] = Row("Markets, architecture, colour and texture creating an intense visual experience in the heart of Morocco.", "Mercados, arquitectura, colores y texturas creando una experiencia visual intensa en el corazón de Marruecos.", "أسواق وعمارة وألوان وملامس تخلق تجربة بصرية مكثفة في قلب المغرب."),
         ["Explorar destino"] = Row("Explore destination", "Explorar destino", "استكشف الوجهة"),
+        ["Privacidade"] = Row("Privacy", "Privacidad", "الخصوصية"),
+        ["Respeitamos sua privacidade. Informações enviadas pelos canais de contato são utilizadas exclusivamente para atendimento e comunicação relacionada aos serviços solicitados."] = Row("We respect your privacy. Information sent through our contact channels is used solely for service and communication related to the requested services.", "Respetamos su privacidad. La información enviada a través de nuestros canales de contacto se utiliza exclusivamente para la atención y comunicación relacionada con los servicios solicitados.", "نحترم خصوصيتك. تُستخدم المعلومات المرسلة عبر قنوات الاتصال لدينا حصراً لخدمة التواصل المتعلقة بالخدمات المطلوبة."),
+        ["Política de Privacidade"] = Row("Privacy Policy", "Política de Privacidad", "سياسة الخصوصية"),
+        ["Atendimento remoto"] = Row("Remote service", "Atención remota", "خدمة عن بُعد"),
+        ["Projetos digitais para clientes no Brasil e no mundo."] = Row("Digital projects for clients in Brazil and around the world.", "Proyectos digitales para clientes en Brasil y en todo el mundo.", "مشاريع رقمية للعملاء في البرازيل وحول العالم."),
     };
 
     public Language Current { get; private set; } = Languages[0];

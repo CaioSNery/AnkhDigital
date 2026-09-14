@@ -1,0 +1,9 @@
+.privacy-page { min-height: 100vh; padding: 9.5rem 0 6rem; background: radial-gradient(circle at 80% 10%, rgba(10, 66, 87, .2), transparent 28%), var(--color-background); }
+.privacy-content { max-width: 52rem; }
+.privacy-content > span { color: var(--color-gold); font-size: .63rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.privacy-content h1 { margin: .9rem 0 1.2rem; color: var(--color-text); font-family: var(--font-display); font-size: clamp(2.7rem, 5vw, 4.5rem); font-weight: 500; line-height: 1; }
+.privacy-content > p { max-width: 42rem; margin: 0 0 3rem; color: var(--color-text-muted); line-height: 1.75; }
+.privacy-content section { padding: 1.3rem 0; border-top: 1px solid rgba(218, 169, 73, .14); }
+.privacy-content h2 { margin: 0 0 .5rem; color: var(--color-gold-light); font-family: var(--font-body); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.privacy-content section p { max-width: 44rem; margin: 0; color: var(--color-text-muted); font-size: .9rem; line-height: 1.75; }
+.privacy-content a { color: var(--color-gold-light); }

@@ -43,9 +43,8 @@ h2 em {
     line-height: 1.75;
 }
 
-.project-list {
+.project-accordions {
     margin-top: 3.5rem;
-    border-top: 1px solid var(--color-border);
 }
 
 .project-row {
@@ -95,15 +94,13 @@ h2 em {
     text-transform: uppercase;
 }
 
-.featured-project {
+.featured-project-detail {
     position: relative;
-    margin-top: 3.5rem;
     overflow: hidden;
-    border: 1px solid rgba(218, 169, 73, .28);
     background: radial-gradient(circle at 84% 18%, rgba(218, 169, 73, .055), transparent 24rem), linear-gradient(135deg, rgba(7, 43, 56, .92), rgba(2, 19, 28, .97));
 }
 
-.featured-project::before {
+.featured-project-detail::before {
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -308,8 +305,82 @@ h2 em {
     background: rgba(218, 169, 73, .25);
 }
 
-.featured-project+.project-list {
-    margin-top: 1rem;
+.project-accordion-pending {
+    margin: 0;
+    padding: 1.25rem clamp(1rem, 3vw, 2.5rem) 1.5rem;
+    border-top: 1px solid rgba(145, 184, 190, .1);
+    color: var(--color-text-subtle);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.project-accordion-editorial {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-top: 1px solid rgba(145, 184, 190, .1);
+    background: linear-gradient(135deg, rgba(7, 43, 56, .52), rgba(2, 19, 28, .82));
+}
+
+.project-accordion-editorial > span,
+.project-accordion-editorial small {
+    color: rgba(218, 169, 73, .72);
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.project-accordion-editorial h4 {
+    max-width: 35rem;
+    margin: .8rem 0;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+    font-weight: 500;
+    line-height: 1.08;
+}
+
+.project-accordion-editorial p {
+    max-width: 42rem;
+    margin: 0 0 1.25rem;
+    color: var(--color-text-muted);
+    font-size: .84rem;
+    line-height: 1.7;
+}
+
+.project-accordion-editorial small { display: inline-flex; align-items: center; gap: .6rem; }
+.project-accordion-editorial small i { width: 1.25rem; height: 1px; background: rgba(218, 169, 73, .35); }
+
+.barbersystem-showcase {
+    margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(218, 169, 73, .14);
+}
+
+.barbersystem-showcase figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem .75rem;
+    margin-bottom: .8rem;
+    color: rgba(218, 169, 73, .76);
+    font-size: .57rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.barbersystem-showcase figcaption span {
+    color: var(--color-text-subtle);
+    font-weight: 700;
+}
+
+.barbersystem-showcase img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(145, 184, 190, .2);
+    object-fit: contain;
 }
 
 .about {

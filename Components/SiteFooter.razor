@@ -65,11 +65,17 @@
                 <a href="@(HomePrefix + "#sobre")">@L.T("Sobre")</a>
                 <a href="/lab">Ankh Lab</a>
             </nav>
+
+            <section class="footer-column footer-privacy" aria-labelledby="footer-privacy-title">
+                <h2 id="footer-privacy-title">@L.T("Privacidade")</h2>
+                <p>@L.T("Respeitamos sua privacidade. Informações enviadas pelos canais de contato são utilizadas exclusivamente para atendimento e comunicação relacionada aos serviços solicitados.")</p>
+                <a href="/privacidade">@L.T("Política de Privacidade") <span aria-hidden="true">↗</span></a>
+            </section>
         </div>
 
         <div class="footer-bottom">
             <p>© @DateTime.Now.Year Ankh Digital. @L.T("Todos os direitos reservados.")</p>
-            <span>@L.T("Salvador · BA · Atendimento remoto para todo o Brasil")</span>
+            <div class="footer-global-service"><strong>@L.T("Atendimento remoto")</strong><span>@L.T("Projetos digitais para clientes no Brasil e no mundo.")</span></div>
         </div>
     </div>
 </footer>
